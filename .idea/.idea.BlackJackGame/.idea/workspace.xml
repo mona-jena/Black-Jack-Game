@@ -22,26 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd15e666-fbef-4d89-870f-abf26008be7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BlackJackGame/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlackJackGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlackJackGame/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlackJackGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlackJackGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/Deck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/Deck.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.dll" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.dll" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackTests/DeckTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/DeckTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackGame.dll" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackGame.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackTests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackTests.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackTests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackTests.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/Debug/netcoreapp3.1/BlackJackTests.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/Debug/netcoreapp3.1/BlackJackTests.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/Debug/netcoreapp3.1/BlackJackTests.dll" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/Debug/netcoreapp3.1/BlackJackTests.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/Debug/netcoreapp3.1/BlackJackTests.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/Debug/netcoreapp3.1/BlackJackTests.pdb" afterDir="false" />
-    </list>
+    <list default="true" id="dd15e666-fbef-4d89-870f-abf26008be7a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,8 +36,8 @@
       <list>
         <option value="$PROJECT_DIR$/BlackJackGame/.gitignore" />
         <option value="$PROJECT_DIR$/BlackJackGame/Game.cs" />
-        <option value="$PROJECT_DIR$/BlackJackTests/DeckTests.cs" />
         <option value="$PROJECT_DIR$/BlackJackGame/Deck.cs" />
+        <option value="$PROJECT_DIR$/BlackJackTests/DeckTests.cs" />
       </list>
     </option>
   </component>
@@ -103,7 +84,7 @@
       <workItem from="1599103592033" duration="844000" />
       <workItem from="1599113958142" duration="5420000" />
       <workItem from="1599437895292" duration="5958000" />
-      <workItem from="1599445674414" duration="7314000" />
+      <workItem from="1599445674414" duration="8177000" />
     </task>
     <servers />
   </component>
@@ -137,22 +118,22 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1680" height="657" key="GridCell.Tab.0.bottom" timestamp="1599455579227">
+    <state width="1680" height="657" key="GridCell.Tab.0.bottom" timestamp="1599458369801">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1680" height="657" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1599455579227" />
-    <state width="1680" height="657" key="GridCell.Tab.0.center" timestamp="1599455579226">
+    <state width="1680" height="657" key="GridCell.Tab.0.bottom/0.23.1792.1017@0.23.1792.1017" timestamp="1599458369801" />
+    <state width="1680" height="657" key="GridCell.Tab.0.center" timestamp="1599458369801">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1680" height="657" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1599455579226" />
-    <state width="1680" height="657" key="GridCell.Tab.0.left" timestamp="1599455579225">
+    <state width="1680" height="657" key="GridCell.Tab.0.center/0.23.1792.1017@0.23.1792.1017" timestamp="1599458369801" />
+    <state width="1680" height="657" key="GridCell.Tab.0.left" timestamp="1599458369800">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1680" height="657" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1599455579225" />
-    <state width="1680" height="657" key="GridCell.Tab.0.right" timestamp="1599455579226">
+    <state width="1680" height="657" key="GridCell.Tab.0.left/0.23.1792.1017@0.23.1792.1017" timestamp="1599458369800" />
+    <state width="1680" height="657" key="GridCell.Tab.0.right" timestamp="1599458369801">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>
-    <state width="1680" height="657" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1599455579226" />
+    <state width="1680" height="657" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1599458369801" />
     <state width="1680" height="435" key="GridCell.Tab.1.bottom" timestamp="1599444612034">
       <screen x="0" y="23" width="1792" height="1017" />
     </state>

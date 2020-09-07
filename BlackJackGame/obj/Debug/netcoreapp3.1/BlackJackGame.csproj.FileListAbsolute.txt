@@ -1,0 +1,12 @@
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.deps.json
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.runtimeconfig.json
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.runtimeconfig.dev.json
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.dll
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.pdb
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.csprojAssemblyReference.cache
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.AssemblyInfoInputs.cache
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.AssemblyInfo.cs
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.csproj.CoreCompileInputs.cache
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.dll
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.pdb
+/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.genruntimeconfig.cache

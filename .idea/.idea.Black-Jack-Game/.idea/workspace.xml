@@ -4,11 +4,33 @@
     <projectFile>Black-Jack-Game/Black-Jack-Game.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2a4fd8b-0a8b-40ae-8da1-35fccb3fed9e" name="Default Changelist" comment="" />
+    <list default="true" id="f2a4fd8b-0a8b-40ae-8da1-35fccb3fed9e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Black-Jack-Game/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Black-Jack-Game/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Black-Jack-Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Black-Jack-Game/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Black-Jack-Game/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Black-Jack-Game/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Black-Jack-Game.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/Deck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/Deck.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/BlackJackGame.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/BlackJackGame.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackTests/BlackJackTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/BlackJackTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/BlackJackTests.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/BlackJackTests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/Debug/netcoreapp3.1/BlackJackTests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/Debug/netcoreapp3.1/BlackJackTests.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackTests/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/obj/rider.project.restore.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9FCAADD9-58A4-4900-9D68-546D5ECFE219/3A4/List.cs" root0="SKIP_HIGHLIGHTING" />
@@ -37,6 +59,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="Black-Jack-Game" type="DotNetProject" factoryName=".NET Project">
@@ -66,14 +89,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599097560232</updated>
-      <workItem from="1599097567905" duration="4596000" />
+      <workItem from="1599097567905" duration="4893000" />
+      <workItem from="1599103474942" duration="713000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

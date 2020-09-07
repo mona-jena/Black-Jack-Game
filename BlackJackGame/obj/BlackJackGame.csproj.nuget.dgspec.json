@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/Mona.Jena/Workspace/Black-Jack-Game/BlackJackGame/BlackJackGame.csproj": {}
+    "/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/BlackJackGame.csproj": {}
   },
   "projects": {
-    "/Users/Mona.Jena/Workspace/Black-Jack-Game/BlackJackGame/BlackJackGame.csproj": {
+    "/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/BlackJackGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/Mona.Jena/Workspace/Black-Jack-Game/BlackJackGame/BlackJackGame.csproj",
+        "projectUniqueName": "/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/BlackJackGame.csproj",
         "projectName": "BlackJackGame",
-        "projectPath": "/Users/Mona.Jena/Workspace/Black-Jack-Game/BlackJackGame/BlackJackGame.csproj",
+        "projectPath": "/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/BlackJackGame.csproj",
         "packagesPath": "/Users/Mona.Jena/.nuget/packages/",
-        "outputPath": "/Users/Mona.Jena/Workspace/Black-Jack-Game/BlackJackGame/obj/",
+        "outputPath": "/Users/Mona.Jena/Workspace/BlackJackGame/BlackJackGame/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/Mona.Jena/.nuget/NuGet/NuGet.Config"

@@ -1,16 +1,15 @@
-using System;
 using System.Collections.Generic;
+using Black_Jack_Game;
 using Xunit;
-using BlackJackGame;
 
-namespace BlackJackTests
+namespace ProgramTest
 {
     public class DeckTests
     {
         [Fact]
-        public void Test1()
+        public void TestIfGenerateDeckReturnsListOfCardsAsStringsInDeck()
         {
-            var expected = new List<string>()
+            /*var expected = new List<string>()
             {
                 "2 of Clubs",
                 "3 of Clubs",
@@ -64,9 +63,12 @@ namespace BlackJackTests
                 "Queen of Spades",
                 "Kind of Spades",
                 "Ace of Spades"
-            };
+            };*/
+
+            int expected = 52;
             Deck newDeck = new Deck();
-            
+            int result = newDeck.GenerateDeck().Count;
+            Assert.Equal(expected, result);
         }
     }
 }

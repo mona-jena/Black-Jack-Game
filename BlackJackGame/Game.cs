@@ -24,6 +24,11 @@ namespace Black_Jack_Game
             //PrintSum(dealerHand) for dealer
             
             //Winner() - compare player and dealer sum
+
+            Deck deck = new Deck();
+            deck.GenerateDeck();
+
+            
         }
     }
 }

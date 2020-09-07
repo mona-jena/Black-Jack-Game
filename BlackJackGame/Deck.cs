@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Black_Jack_Game
 {
@@ -19,30 +20,38 @@ namespace Black_Jack_Game
         {
             List<string> completeDeck = new List<string>();
             List<string> suites = new List<string>() {"Clubs", "Diamonds", "Hearts", "Spades"};
-            List<int> values = new List<int>() {1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14};
+            List<int> values = new List<int>() {2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14};
 
             for (int i = 0; i < suites.Count; i++)
             {
                 for (int j = 0; j < values.Count; j++)
                 {
-                    string card = suites[i] + " of " + values[j].ToString();
+                    string card = suites[i] + values[j].ToString();
                     completeDeck.Add(card);
                 }
             }
+            Console.WriteLine("\ncompleted deck:");
             completeDeck.ForEach(Console.WriteLine);
-  
+            //Console.Write(completeDeck.Count);
+            Shuffle(completeDeck);
             return completeDeck;
         }
 
-        public List<string> Shuffle()
+        public List<string> Shuffle(List<string> completeDeck)
         {
-            List<string>completeDeck = new List<string>() { };
-            return completeDeck;
+            List<string> shuffledDeck = completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
+            Console.WriteLine("\nshuffled deck:");
+            shuffledDeck.ForEach(Console.WriteLine);
+            DrawCard(shuffledDeck);
+            return shuffledDeck;
         }
 
-        public void DrawCard()
+        public string DrawCard(List<string> shuffledDeck)
         {
-            
+            String firstCard = shuffledDeck[0];
+            shuffledDeck.RemoveAt(0);
+            Console.WriteLine("\ntopcard: " + firstCard);
+            return firstCard;
         }
         
     }

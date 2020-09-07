@@ -4,6 +4,11 @@
     &lt;TestId&gt;xUnit::30994C2D-080C-47CE-A014-40185A15BC68::.NETCoreApp,Version=v3.1::ProgramTest.DeckTests.TestIfGenerateDeckReturnsListOfCardsAsStringsInDeck&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=818977b7_002Db050_002D436b_002Da37d_002D457de4e9e19e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestIfGenerateDeckReturnsListOfCardsAsStringsInDeck #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::30994C2D-080C-47CE-A014-40185A15BC68::.NETCoreApp,Version=v3.1::ProgramTest.DeckTests.TestIfGenerateDeckReturnsListOfCardsAsStringsInDeck&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b05cfae9_002D08ce_002D428a_002Da9e7_002Dd7e71a97531a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

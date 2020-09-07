@@ -27,8 +27,8 @@ namespace Black_Jack_Game
 
             Deck deck = new Deck();
             deck.GenerateDeck();
-
             
+
         }
     }
 }

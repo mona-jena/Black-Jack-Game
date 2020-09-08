@@ -20,20 +20,46 @@ namespace Black_Jack_Game
         {
             List<string> completeDeck = new List<string>();
             List<string> suites = new List<string>() {"Clubs", "Diamonds", "Hearts", "Spades"};
-            List<int> values = new List<int>() {2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14};
+            List<string> values = new List<string>() {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
 
             for (int i = 0; i < suites.Count; i++)
             {
                 for (int j = 0; j < values.Count; j++)
                 {
-                    string card = suites[i] + values[j].ToString();
+                    /*string cardValue = "";
+                    
+                    switch (values[j])
+                    {
+                        case (10):
+                            cardValue = "Ace";
+                            break;
+                        case (13):
+                            cardValue = "King";
+                            break;
+                        case (12):
+                            cardValue = "Queen";
+                            break;
+                        case (11):
+                            cardValue = "Jack";
+                            break;
+                        default:
+                            cardValue = values[j].ToString();
+                            break;
+                    }*/
+                    
+                    string card = suites[i] + values[j];
                     completeDeck.Add(card);
                 }
             }
             Console.WriteLine("\ncompleted deck:");
-            completeDeck.ForEach(Console.WriteLine);
+            for (int i = 0; i <completeDeck.Count; i++)
+            {
+                Console.WriteLine(completeDeck[i]);
+            }
+            //completeDeck.ForEach(Console.WriteLine);
             //Console.Write(completeDeck.Count);
-            Shuffle(completeDeck);
+            //Shuffle(completeDeck);
+
             return completeDeck;
         }
 
@@ -42,7 +68,7 @@ namespace Black_Jack_Game
             List<string> shuffledDeck = completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
             Console.WriteLine("\nshuffled deck:");
             shuffledDeck.ForEach(Console.WriteLine);
-            DrawCard(shuffledDeck);
+            //DrawCard(shuffledDeck);
             return shuffledDeck;
         }
 

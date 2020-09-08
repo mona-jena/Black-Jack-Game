@@ -43,7 +43,6 @@ namespace Black_Jack_Game
             game.PlayersTurn(playersHand);
             
             
-            
             List<string> dealersHand = new List<string>();
             for (int i = 0; i < 2; i++)
             {

@@ -24,14 +24,38 @@
   <component name="ChangeListManager">
     <list default="true" id="dd15e666-fbef-4d89-870f-abf26008be7a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BlackJackGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlackJackGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/.vs/BlackJackGame/xs/UserPrefs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BlackJackGame/Deck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/Deck.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlackJackGame/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.dll" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.dll" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackGame/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.runtimeconfig.dev.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/bin/Debug/netcoreapp3.1/BlackJackGame.runtimeconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Black-Jack-Game.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Black-Jack-Game.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Black-Jack-Game.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/BlackJackGame.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/BlackJackGame.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/BlackJackGame.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/Black-Jack-Game.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/Black-Jack-Game.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/Black-Jack-Game.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/Black-Jack-Game.csprojAssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.csproj.CoreCompileInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.csproj.FileListAbsolute.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.csprojAssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.genruntimeconfig.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/Debug/netcoreapp3.1/BlackJackGame.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlackJackGame/obj/rider.project.restore.info" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BlackJackTests/DeckTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/DeckTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackGame.dll" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackGame.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BlackJackTests/bin/Debug/netcoreapp3.1/BlackJackGame.pdb" afterDir="false" />
@@ -103,7 +127,7 @@
       <workItem from="1599103592033" duration="844000" />
       <workItem from="1599113958142" duration="5420000" />
       <workItem from="1599437895292" duration="5958000" />
-      <workItem from="1599445674414" duration="20137000" />
+      <workItem from="1599445674414" duration="20998000" />
     </task>
     <servers />
   </component>

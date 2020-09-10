@@ -33,8 +33,7 @@ namespace Black_Jack_Game
             List<string> shuffledDeck = deck.Shuffle(orderedDeck);
 
             Game game = new Game(new ConsoleActions());
-            
-            
+
             List<string> playersHand = new List<string>();
             for (int i = 0; i < 2; i++)
             {
@@ -42,8 +41,7 @@ namespace Black_Jack_Game
                 playersHand.Add(card);
             }
             game.PlayersTurn(playersHand, deck, shuffledDeck);
-            
-            
+
             List<string> dealersHand = new List<string>();
             for (int i = 0; i < 2; i++)
             {
@@ -55,20 +53,19 @@ namespace Black_Jack_Game
             Console.WriteLine(shuffledDeck.Count);
         }
         
-        
 
         public Game(IConsole console)
         {
             _newConsole = console;
         }
 
-        public List<string> PlayersTurn(List<string> playersHand, Deck deck, List<string> shuffledDeck)
+        public List<string> PlayersTurn(List<string> playersHand, IDeck deck, List<string> shuffledDeck)
         {
             string _playersOption = "1";
             while (_playersOption == "1")
             {
                 Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
-                _playersOption = Console.ReadLine();
+                _playersOption = _newConsole.ReadLine();
                 if(_playersOption == "1")
                 {
                     playersHand.Add(deck.DrawCard(shuffledDeck));
@@ -79,7 +76,6 @@ namespace Black_Jack_Game
                     break;
                 }
             }
-
             return playersHand;
         }
         

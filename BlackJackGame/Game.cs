@@ -39,6 +39,9 @@ namespace Black_Jack_Game
             List<string> dealersHand = game.DealFirstDrawCard(deck, shuffledDeck);
 
             game.PlayersTurn(playersHand, deck, shuffledDeck);
+
+            Console.WriteLine("\nDealers Turn: ");
+            game.DealersTurn(playersHand, deck, shuffledDeck);
             
         }
         
@@ -115,6 +118,22 @@ namespace Black_Jack_Game
                 score += cardValue;
             }
             return score;
+        }
+
+        public List<string> DealersTurn(List<string> dealersHand, IDeck deck, List<string> shuffledDeck)
+        {
+            int score = 0;
+
+            while (score <= 17)
+            {
+                dealersHand.Add(deck.DrawCard(shuffledDeck));
+                dealersHand.ForEach(Console.WriteLine);
+                score += CalculateScore(dealersHand);
+                Console.WriteLine("score: " + score);
+            }
+
+            return dealersHand;
+           
         }
 
     }

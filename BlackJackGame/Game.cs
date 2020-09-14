@@ -33,7 +33,8 @@ namespace Black_Jack_Game
             List<string> shuffledDeck = deck.Shuffle(orderedDeck);
 
             Game game = new Game(new ConsoleActions());
-
+            
+            
             List<string> playersHand = new List<string>();
             for (int i = 0; i < 2; i++)
             {
@@ -41,17 +42,19 @@ namespace Black_Jack_Game
                 playersHand.Add(card);
             }
             game.PlayersTurn(playersHand, deck, shuffledDeck);
-
+            
+            
             List<string> dealersHand = new List<string>();
             for (int i = 0; i < 2; i++)
             {
                 string dealerCard = deck.DrawCard(shuffledDeck);
                 dealersHand.Add(dealerCard);
             }
-            game.DealersTurn(playersHand, deck, shuffledDeck);
+            //game.DealersTurn(playersHand, deck, shuffledDeck);
             
             Console.WriteLine(shuffledDeck.Count);
         }
+        
         
 
         public Game(IConsole console)
@@ -59,13 +62,13 @@ namespace Black_Jack_Game
             _newConsole = console;
         }
 
-        public List<string> PlayersTurn(List<string> playersHand, IDeck deck, List<string> shuffledDeck)
+        public List<string> PlayersTurn(List<string> playersHand, Deck deck, List<string> shuffledDeck)
         {
             string _playersOption = "1";
             while (_playersOption == "1")
             {
                 Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
-                _playersOption = _newConsole.ReadLine();
+                _playersOption = Console.ReadLine();
                 if(_playersOption == "1")
                 {
                     playersHand.Add(deck.DrawCard(shuffledDeck));
@@ -76,25 +79,10 @@ namespace Black_Jack_Game
                     break;
                 }
             }
+
             return playersHand;
         }
         
-        public void CalculateScore(List<int> playersHand)
-        {
-            
-        }
-
-        public void DealersTurn(List<string> dealersHand, IDeck deck, List<string> shuffledDeck)
-        {
-            string _dealersOption = DealersOption();
-            
-        }
-
-        public string DealersOption()
-        {
-            Random _random = new Random();
-            int dealersChoice = _random.Next(0,2);
-            return dealersChoice.ToString();
-        }
+        
     }
 }

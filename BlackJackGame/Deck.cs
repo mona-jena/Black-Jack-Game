@@ -48,7 +48,7 @@ namespace Black_Jack_Game
                             break;
                     }*/
                     
-                    string card = _suites[i] + _values[j];
+                    string card = _values[j] + " " +  _suites[i];
                     _completeDeck.Add(card);
                 }
             }

@@ -11,8 +11,8 @@ namespace ProgramTest
         [Fact]
         public void TestIfPlayersTurnTakesUserInputAndDrawsCard()
         {
-            Deck deck = new Deck(){};
-            
+            Deck deck = new Deck() { };
+
             List<string> shuffledDeck = new List<string>()
             {
                 "5 of Diamonds",
@@ -67,14 +67,14 @@ namespace ProgramTest
                 "Queen of Spades",
                 "Kind of Spades",
                 "Ace of Spades"
-            }; 
-  
-            List<string> playersHand = new List<string>(){"Hearts3", "ClubsKind"};
+            };
+
+            List<string> playersHand = new List<string>() {"3 of Hearts", "5 of Clubs"};
             var consoleActionsMock = new Mock<IConsole>();
             consoleActionsMock.SetupSequence(s => s.ReadLine())
                 .Returns("1")
                 .Returns("0");
-            
+
             int expected = 3;
             Game game = new Game(consoleActionsMock.Object);
             int result = game.PlayersTurn(playersHand, deck, shuffledDeck).Count;
@@ -84,11 +84,11 @@ namespace ProgramTest
         [Fact]
         public void TestIfPlayersTurnReturnsTopCardFromDrawCardMethod()
         {
-            Deck deck = new Deck(){};
-            
+            Deck deck = new Deck() { };
+
             List<string> shuffledDeck = new List<string>()
             {
-                "Diamond5",
+                "5 of Diamonds",
                 "10 of Clubs",
                 "3 of Clubs",
                 "4 of Clubs",
@@ -140,24 +140,38 @@ namespace ProgramTest
                 "Queen of Spades",
                 "Kind of Spades",
                 "Ace of Spades"
-            }; 
-  
-            List<string> playersHand = new List<string>(){"Hearts3", "ClubsKind"};
+            };
+
+            List<string> playersHand = new List<string>() {"3 of Hearts", "5 of Clubs"};
             var consoleActionsMock = new Mock<IConsole>();
             consoleActionsMock.SetupSequence(s => s.ReadLine())
                 .Returns("1")
                 .Returns("0");
-            
+
             var deckMock = new Mock<IDeck>();
             deckMock.Setup((s => s.DrawCard(shuffledDeck)))
-                .Returns("Diamond5");
-            
-            List<string> expected = new List<string>() {"Hearts3", "ClubsKind", "Diamond5"};
+                .Returns("5 of Diamonds");
+
+            List<string> expected = new List<string>() {"3 of Hearts", "5 of Clubs", "5 of Diamonds"};
             Game game = new Game(consoleActionsMock.Object);
             List<string> result = game.PlayersTurn(playersHand, deckMock.Object, shuffledDeck);
             Assert.Equal(expected, result);
         }
         
+        [Theory]
+        [InlineData("3 of Hearts", "5 of Clubs", "5 of Diamonds", 13)]
+        [InlineData("Ace of Hearts", "5 of Clubs", "Queen of Diamonds", 32)]
+        public void TestIfCalculateSumReturnsTotalSumOfPlayersHand(string card1, string card2, string card3, int expected)
+        {
+            List<string> playersHand = new List<string>();
+            playersHand.Add(card1);
+            playersHand.Add(card2);
+            playersHand.Add(card3);
+            
+            Game game = new Game(new ConsoleActions());
+            int result = game.CalculateScore(playersHand);
+            Assert.Equal(expected, result);
+        }
         
     }
 }

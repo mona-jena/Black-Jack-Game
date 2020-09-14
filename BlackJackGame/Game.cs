@@ -48,7 +48,7 @@ namespace Black_Jack_Game
                 string dealerCard = deck.DrawCard(shuffledDeck);
                 dealersHand.Add(dealerCard);
             }
-            //game.DealersTurn(playersHand, deck, shuffledDeck);
+            game.DealersTurn(playersHand, deck, shuffledDeck);
             
             Console.WriteLine(shuffledDeck.Count);
         }
@@ -79,6 +79,22 @@ namespace Black_Jack_Game
             return playersHand;
         }
         
-        
+        public void CalculateScore(List<int> playersHand)
+        {
+            
+        }
+
+        public void DealersTurn(List<string> dealersHand, IDeck deck, List<string> shuffledDeck)
+        {
+            string _dealersOption = DealersOption();
+            
+        }
+
+        public string DealersOption()
+        {
+            Random _random = new Random();
+            int dealersChoice = _random.Next(0,2);
+            return dealersChoice.ToString();
+        }
     }
 }

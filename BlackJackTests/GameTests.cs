@@ -160,8 +160,8 @@ namespace ProgramTest
         
         [Theory]
         [InlineData("3 of Hearts", "5 of Clubs", "5 of Diamonds", 13)]
-        [InlineData("Ace of Hearts", "5 of Clubs", "Queen of Diamonds", 32)]
-        public void TestIfCalculateSumReturnsTotalSumOfPlayersHand(string card1, string card2, string card3, int expected)
+        [InlineData("Ace of Hearts", "5 of Clubs", "Queen of Diamonds", 26)]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHand(string card1, string card2, string card3, int expected)
         {
             List<string> playersHand = new List<string>();
             playersHand.Add(card1);
@@ -173,6 +173,8 @@ namespace ProgramTest
             Assert.Equal(expected, result);
         }
 
+        
+        // ############ CHECK TEST BELOW ###########
         [Fact]
         public void TestIfDealersTurnStopsDrawingCardsWhenScoreReachesSeventeen()
         {
@@ -244,8 +246,6 @@ namespace ProgramTest
             Game game = new Game(new ConsoleActions());
             List<string> result = game.DealersTurn(dealersHand, deckMock.Object, shuffledDeck);
             Assert.Equal(expected, result);
-            
         }
-        
     }
 }

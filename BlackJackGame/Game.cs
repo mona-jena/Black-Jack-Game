@@ -23,10 +23,11 @@ namespace Black_Jack_Game
             
     //Winner() - compare player and dealer sum
 
+    
     public class Game
     {
         IConsole _newConsole;
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Deck deck = new Deck();
             List<string> orderedDeck = deck.GenerateDeck();
@@ -58,6 +59,7 @@ namespace Black_Jack_Game
         {
             _newConsole = console;
         }
+        
 
         public List<string> DealFirstTwoCards(Deck deck, List<string> shuffledDeck)
         {
@@ -73,6 +75,7 @@ namespace Black_Jack_Game
             return usersHand;
         }
 
+        
         public List<string> PlayersTurn(List<string> playersHand, IDeck deck, List<string> shuffledDeck)
         {
             int score = 0;
@@ -96,31 +99,32 @@ namespace Black_Jack_Game
             return playersHand;
         }
         
+        
         public int CalculateScore(List<string> playersHand)
         {
             int score = 0;
             foreach (var i in playersHand)
             {
-                string[] extractedValue = i.Split(" ");
+                string[] splitCard = i.Split(" ");
 
                 int cardValue = 0;
                     
-                switch (extractedValue[0])
+                switch (splitCard[0])
                 {
                     case ("Jack"):
-                        cardValue = 11;
+                        cardValue = 10;
                         break;
                     case ("King"):
-                        cardValue = 12;
+                        cardValue = 10;
                         break;
                     case ("Queen"):
-                        cardValue = 13;
+                        cardValue = 10;
                         break;
                     case ("Ace"):
-                        cardValue = 14;
+                        cardValue = 11;
                         break;
                     default:
-                        cardValue = int.Parse(extractedValue[0]);
+                        cardValue = int.Parse(splitCard[0]);
                         break;
                 }
      
@@ -128,6 +132,13 @@ namespace Black_Jack_Game
             }
             return score;
         }
+
+        
+        public void AceCondition(int score)
+        {
+            
+        }
+        
 
         public List<string> DealersTurn(List<string> dealersHand, IDeck deck, List<string> shuffledDeck)
         {
@@ -142,7 +153,6 @@ namespace Black_Jack_Game
             }
 
             return dealersHand;
-           
         }
 
     }

@@ -34,14 +34,22 @@ namespace Black_Jack_Game
 
             Game game = new Game(new ConsoleActions());
 
-            List<string> playersHand = game.DealFirstDrawCard(deck, shuffledDeck);
+            List<string> playersHand = game.DealFirstTwoCards(deck, shuffledDeck);
+            Console.WriteLine("\nDraw 2 cards for player: ");
+            playersHand.ForEach(Console.WriteLine);
+            int playersScore = game.CalculateScore(playersHand);
+            Console.WriteLine("Score: " + playersScore);
             
-            List<string> dealersHand = game.DealFirstDrawCard(deck, shuffledDeck);
+            List<string> dealersHand = game.DealFirstTwoCards(deck, shuffledDeck);
+            Console.WriteLine("\nDraw 2 cards for dealer: ");
+            dealersHand.ForEach(Console.WriteLine);
+            int dealersScore = game.CalculateScore(dealersHand);
+            Console.WriteLine("Score: " + dealersScore);
 
             game.PlayersTurn(playersHand, deck, shuffledDeck);
 
             Console.WriteLine("\nDealers Turn: ");
-            game.DealersTurn(playersHand, deck, shuffledDeck);
+            game.DealersTurn(dealersHand, deck, shuffledDeck);
             
         }
         
@@ -51,8 +59,9 @@ namespace Black_Jack_Game
             _newConsole = console;
         }
 
-        public List<string> DealFirstDrawCard(Deck deck, List<string> shuffledDeck)
+        public List<string> DealFirstTwoCards(Deck deck, List<string> shuffledDeck)
         {
+           
             List<string> usersHand = new List<string>();
             
             for (int i = 0; i < 2; i++)
@@ -70,7 +79,7 @@ namespace Black_Jack_Game
             string _playersOption = "1";
             while (_playersOption == "1" && score < 21)
             {
-                Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
+                Console.WriteLine("\nHit or stay? (Hit = 1, Stay = 0)");
                 _playersOption = _newConsole.ReadLine();
                 if(_playersOption == "1")
                 {
@@ -124,7 +133,7 @@ namespace Black_Jack_Game
         {
             int score = 0;
 
-            while (score <= 17)
+            while (score < 17)
             {
                 dealersHand.Add(deck.DrawCard(shuffledDeck));
                 dealersHand.ForEach(Console.WriteLine);

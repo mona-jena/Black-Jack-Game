@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Black_Jack_Game
 {
-    public class Deck : IDeck
+    public class Deck
     {
         
         //Deck.Generate Deck of Cards -

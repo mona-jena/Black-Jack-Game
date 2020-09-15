@@ -19,13 +19,13 @@ namespace Black_Jack_Game
         public List<string> GenerateDeck()
         {
         
-            List<string> _completeDeck = new List<string>();
-            List<string> _suites = new List<string>() {"Clubs", "Diamonds", "Hearts", "Spades"};
-            List<string> _values = new List<string>() {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
+            List<string> completeDeck = new List<string>();
+            List<string> suites = new List<string>() {"Clubs", "Diamonds", "Hearts", "Spades"};
+            List<string> values = new List<string>() {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
 
-            for (int i = 0; i < _suites.Count; i++)
+            for (int i = 0; i < suites.Count; i++)
             {
-                for (int j = 0; j < _values.Count; j++)
+                for (int j = 0; j < values.Count; j++)
                 {
                     /*string cardValue = "";
                     
@@ -48,37 +48,37 @@ namespace Black_Jack_Game
                             break;
                     }*/
                     
-                    string card = _values[j] + " " +  _suites[i];
-                    _completeDeck.Add(card);
+                    string card = values[j] + " " +  suites[i];
+                    completeDeck.Add(card);
                 }
             }
             Console.WriteLine("\ncompleted deck:");
-            for (int i = 0; i <_completeDeck.Count; i++)
+            for (int i = 0; i <completeDeck.Count; i++)
             {
-                Console.WriteLine(_completeDeck[i]);
+                Console.WriteLine(completeDeck[i]);
             }
             //completeDeck.ForEach(Console.WriteLine);
             //Console.Write(completeDeck.Count);
             //Shuffle(completeDeck);
 
-            return _completeDeck;
+            return completeDeck;
         }
 
         public List<string> Shuffle(List<string> completeDeck)
         {
-            List<string> _shuffledDeck = completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
+            List<string> shuffledDeck = completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
             Console.WriteLine("\nshuffled deck:");
-            _shuffledDeck.ForEach(Console.WriteLine);
+            shuffledDeck.ForEach(Console.WriteLine);
             //DrawCard(shuffledDeck);
-            return _shuffledDeck;
+            return shuffledDeck;
         }
 
         public string DrawCard(List<string> shuffledDeck)
         {
-            String _firstCard = shuffledDeck[0];
+            String firstCard = shuffledDeck[0];
             shuffledDeck.RemoveAt(0);
-            Console.WriteLine("\ntopcard: " + _firstCard);
-            return _firstCard;
+            Console.WriteLine("\ntopcard: " + firstCard);
+            return firstCard;
         }
         
     }

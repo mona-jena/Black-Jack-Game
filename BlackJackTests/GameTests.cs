@@ -154,10 +154,10 @@ namespace ProgramTest
 
             List<string> expected = new List<string>() {"3 of Hearts", "5 of Clubs", "5 of Diamonds"};
             Game game = new Game(consoleActionsMock.Object);
-            List<string> result = game.PlayersTurn(playersHand, deckMock.Object, shuffledDeck);
+            List<string> result = game.PlayersTurn(playersHand, deck, shuffledDeck);
             Assert.Equal(expected, result);
         }
-        
+
         [Theory]
         [InlineData("3 of Hearts", "5 of Clubs", "5 of Diamonds", 13)]
         [InlineData("Ace of Hearts", "5 of Clubs", "Queen of Diamonds", 32)]

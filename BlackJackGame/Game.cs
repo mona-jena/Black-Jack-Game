@@ -26,9 +26,11 @@ namespace Black_Jack_Game
     public class Game
     {
         IConsole _newConsole;
+        
         static void Main(string[] args)
         {
             Deck deck = new Deck();
+
             List<string> orderedDeck = deck.GenerateDeck();
             List<string> shuffledDeck = deck.Shuffle(orderedDeck);
 
@@ -40,15 +42,18 @@ namespace Black_Jack_Game
 
             game.PlayersTurn(playersHand, deck, shuffledDeck);
             
+            //game.DealersTurn(playersHand, deck, shuffledDeck);
+
         }
         
-
+        
         public Game(IConsole console)
         {
             _newConsole = console;
         }
 
-        public List<string> DealFirstDrawCard(Deck deck, List<string> shuffledDeck)
+
+        public List<string> DealFirstDrawCard(IDeck deck, List<string> shuffledDeck)
         {
             List<string> usersHand = new List<string>();
             
@@ -64,12 +69,12 @@ namespace Black_Jack_Game
         public List<string> PlayersTurn(List<string> playersHand, IDeck deck, List<string> shuffledDeck)
         {
             int score = 0;
-            string _playersOption = "1";
-            while (_playersOption == "1" && score < 21)
+            string playersOption = "1";
+            while (playersOption == "1" && score < 21)
             {
                 Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
-                _playersOption = _newConsole.ReadLine();
-                if(_playersOption == "1")
+                playersOption = Console.ReadLine();
+                if(playersOption == "1")
                 {
                     playersHand.Add(deck.DrawCard(shuffledDeck));
                     playersHand.ForEach(Console.WriteLine);
@@ -81,9 +86,11 @@ namespace Black_Jack_Game
                     break;
                 }
             }
+
             return playersHand;
         }
         
+
         public int CalculateScore(List<string> playersHand)
         {
             int score = 0;
@@ -116,6 +123,5 @@ namespace Black_Jack_Game
             }
             return score;
         }
-
     }
 }

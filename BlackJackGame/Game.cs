@@ -37,7 +37,7 @@ namespace Black_Jack_Game
             Game game = new Game(new ConsoleActions());
 
             List<string> playersHand = game.DealFirstDrawCard(deck, shuffledDeck);
-            
+
             List<string> dealersHand = game.DealFirstDrawCard(deck, shuffledDeck);
 
             game.PlayersTurn(playersHand, deck, shuffledDeck);
@@ -56,12 +56,8 @@ namespace Black_Jack_Game
         public List<string> DealFirstDrawCard(IDeck deck, List<string> shuffledDeck)
         {
             List<string> usersHand = new List<string>();
-            
-            for (int i = 0; i < 2; i++)
-            {
-                string dealerCard = deck.DrawCard(shuffledDeck);
-                usersHand.Add(dealerCard);
-            }
+            usersHand.Add(deck.DrawCard(shuffledDeck));
+            usersHand.Add(deck.DrawCard(shuffledDeck));
 
             return usersHand;
         }
@@ -94,34 +90,50 @@ namespace Black_Jack_Game
         public int CalculateScore(List<string> playersHand)
         {
             int score = 0;
+            int numberOfAces = 0;
+
             foreach (var i in playersHand)
             {
-                string[] extractedValue = i.Split(" ");
+                string[] splitCard = i.Split(" ");
 
-                int cardValue = 0;
-                    
-                switch (extractedValue[0])
+                switch (splitCard[0])
                 {
                     case ("Jack"):
-                        cardValue = 11;
+                        score += 10;
                         break;
                     case ("King"):
-                        cardValue = 12;
+                        score += 10;
                         break;
                     case ("Queen"):
-                        cardValue = 13;
+                        score += 10;
                         break;
                     case ("Ace"):
-                        cardValue = 14;
+                        numberOfAces++;
                         break;
                     default:
-                        cardValue = int.Parse(extractedValue[0]);
+                        score += int.Parse(splitCard[0]);
                         break;
                 }
-     
-                score += cardValue;
             }
+
+            if (numberOfAces == 0)
+            {
+                return score;
+            }
+
+            score += (numberOfAces - 1);
+
+            if (score < 11)
+            {
+                score += 11;
+            }
+            else
+            {
+                score += 1;
+            }
+
             return score;
+            
         }
     }
 }

@@ -27,27 +27,6 @@ namespace Black_Jack_Game
             {
                 for (int j = 0; j < values.Count; j++)
                 {
-                    /*string cardValue = "";
-                    
-                    switch (values[j])
-                    {
-                        case (10):
-                            cardValue = "Ace";
-                            break;
-                        case (13):
-                            cardValue = "King";
-                            break;
-                        case (12):
-                            cardValue = "Queen";
-                            break;
-                        case (11):
-                            cardValue = "Jack";
-                            break;
-                        default:
-                            cardValue = values[j].ToString();
-                            break;
-                    }*/
-                    
                     string card = values[j] + " " +  suites[i];
                     completeDeck.Add(card);
                 }
@@ -57,9 +36,6 @@ namespace Black_Jack_Game
             {
                 Console.WriteLine(completeDeck[i]);
             }
-            //completeDeck.ForEach(Console.WriteLine);
-            //Console.Write(completeDeck.Count);
-            //Shuffle(completeDeck);
 
             return completeDeck;
         }
@@ -69,7 +45,6 @@ namespace Black_Jack_Game
             List<string> shuffledDeck = completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
             Console.WriteLine("\nshuffled deck:");
             shuffledDeck.ForEach(Console.WriteLine);
-            //DrawCard(shuffledDeck);
             return shuffledDeck;
         }
 

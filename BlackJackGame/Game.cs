@@ -29,7 +29,7 @@ namespace Black_Jack_Game
         
         static void Main(string[] args)
         {
-            Deck deck = new Deck();
+            Deck deck = new Deck(new ConsoleActions());
             
             deck.Shuffle();
 

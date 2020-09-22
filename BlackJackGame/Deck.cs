@@ -14,8 +14,9 @@ namespace Black_Jack_Game
         
         List<string> _completeDeck = new List<string>();
 
-        public Deck()
+        public Deck(IConsole console)
         {
+            _newConsole = console;
             List<string> suites = new List<string>() {"Clubs", "Diamonds", "Hearts", "Spades"};
             List<string> values = new List<string>() {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
 

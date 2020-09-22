@@ -7,11 +7,12 @@ namespace ProgramTest
 {
     public class DeckTests
     {
+        
         [Fact]
         public void TestIfGenerateDeckReturnsListOfCardsAsStringsInDeck()
         {
             int expected = 52;
-            Deck newDeck = new Deck();
+            Deck newDeck = new Deck(new ConsoleActions());
             int result = newDeck.CompleteDeck.Count;
             Assert.Equal(expected, result);
         }
@@ -76,7 +77,7 @@ namespace ProgramTest
                 "Ace of Spades"
             };
             int expected = 52;
-            Deck newDeck = new Deck();
+            Deck newDeck = new Deck(new ConsoleActions());
             
             newDeck.Shuffle();
             int result = newDeck.CompleteDeck.Count();
@@ -142,9 +143,11 @@ namespace ProgramTest
                 "Ace of Spades"
             }; 
             var expected = "5 of Diamonds";
-            Deck newDeck = new Deck();
-            var result = newDeck.DrawCard(completeDeck);
+            Deck newDeck = new Deck(new ConsoleActions());
+            var result = newDeck.DrawCard();
             Assert.Equal(expected, result);
+            
+            //HOW TO TEST A METHOD WHICH TAKES NO PARAM???
         }
 
         

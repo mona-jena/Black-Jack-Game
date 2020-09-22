@@ -2,13 +2,6 @@ using System;
 
 namespace Black_Jack_Game
 {
-    public interface IConsole
-    {
-        public string ReadLine();
-
-        public void Write(string message);
-    }
-
     public class ConsoleActions : IConsole
     {
         public string ReadLine()
@@ -16,10 +9,9 @@ namespace Black_Jack_Game
             return Console.ReadLine();
         }
 
-        public void Write(string message)
+        public void WriteLine(string message)
         {
             Console.WriteLine(message);
         }
     }
-    
 }

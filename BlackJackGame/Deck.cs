@@ -4,81 +4,53 @@ using System.Linq;
 
 namespace Black_Jack_Game
 {
-    public class Deck
+    public class Deck : IDeck
     {
+        IConsole _newConsole;
         
         //Deck.Generate Deck of Cards -
         //Deck.Shuffle deck of cards - to randomize
         //Deck.DrawCard() - return top card from shuffled deck of cards
         
-        public Deck()
-        {
-            
-        }
+        List<string> _completeDeck = new List<string>();
 
-        public List<string> GenerateDeck()
+        public Deck(IConsole console)
         {
-        
-            List<string> _completeDeck = new List<string>();
-            List<string> _suites = new List<string>() {"Clubs", "Diamonds", "Hearts", "Spades"};
-            List<string> _values = new List<string>() {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
+            _newConsole = console;
+            List<string> suites = new List<string>() {"Clubs", "Diamonds", "Hearts", "Spades"};
+            List<string> values = new List<string>() {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
 
-            for (int i = 0; i < _suites.Count; i++)
+            for (int i = 0; i < suites.Count; i++)
             {
-                for (int j = 0; j < _values.Count; j++)
+                for (int j = 0; j < values.Count; j++)
                 {
-                    /*string cardValue = "";
-                    
-                    switch (values[j])
-                    {
-                        case (10):
-                            cardValue = "Ace";
-                            break;
-                        case (13):
-                            cardValue = "King";
-                            break;
-                        case (12):
-                            cardValue = "Queen";
-                            break;
-                        case (11):
-                            cardValue = "Jack";
-                            break;
-                        default:
-                            cardValue = values[j].ToString();
-                            break;
-                    }*/
-                    
-                    string card = _suites[i] + _values[j];
+                    string card = values[j] + " of " +  suites[i];
                     _completeDeck.Add(card);
                 }
             }
-            Console.WriteLine("\ncompleted deck:");
+            _newConsole.WriteLine("\ncompleted deck:");
             for (int i = 0; i <_completeDeck.Count; i++)
             {
-                Console.WriteLine(_completeDeck[i]);
+                _newConsole.WriteLine(_completeDeck[i]);
             }
-            //completeDeck.ForEach(Console.WriteLine);
-            //Console.Write(completeDeck.Count);
-            //Shuffle(completeDeck);
-
-            return _completeDeck;
         }
 
-        public List<string> Shuffle(List<string> completeDeck)
-        {
-            List<string> _shuffledDeck = completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
-            Console.WriteLine("\nshuffled deck:");
-            _shuffledDeck.ForEach(Console.WriteLine);
-            //DrawCard(shuffledDeck);
-            return _shuffledDeck;
+        public List<string> CompleteDeck => _completeDeck;
+
+        public void Shuffle()
+        { 
+            _completeDeck = _completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
+            _newConsole.WriteLine("\nshuffled deck:");
+            _completeDeck.ForEach(_newConsole.WriteLine);
+            
         }
 
-        public string DrawCard(List<string> shuffledDeck)
+        public string DrawCard()
         {
-            String _firstCard = shuffledDeck[0];
-            shuffledDeck.RemoveAt(0);
-            Console.WriteLine("\ntopcard: " + _firstCard);
-            return _firstCard;
+            String firstCard = _completeDeck[0];
+            _completeDeck.RemoveAt(0);
+            _newConsole.WriteLine("\ntopcard: " + firstCard);
+            return firstCard;
         }
         
     }

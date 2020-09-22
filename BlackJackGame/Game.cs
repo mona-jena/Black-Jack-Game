@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 namespace Black_Jack_Game
@@ -26,53 +26,55 @@ namespace Black_Jack_Game
     public class Game
     {
         IConsole _newConsole;
+        
         static void Main(string[] args)
         {
-            Deck deck = new Deck();
-            List<string> orderedDeck = deck.GenerateDeck();
-            List<string> shuffledDeck = deck.Shuffle(orderedDeck);
+            Deck deck = new Deck(new ConsoleActions());
+            
+            deck.Shuffle();
 
             Game game = new Game(new ConsoleActions());
+
+            List<string> playersHand = game.DealFirstDrawCard(deck);
+
+            List<string> dealersHand = game.DealFirstDrawCard(deck);
+
+            game.PlayersTurn(playersHand, deck);
             
-            
-            List<string> playersHand = new List<string>();
-            for (int i = 0; i < 2; i++)
-            {
-                string card = deck.DrawCard(shuffledDeck);
-                playersHand.Add(card);
-            }
-            game.PlayersTurn(playersHand, deck, shuffledDeck);
-            
-            
-            List<string> dealersHand = new List<string>();
-            for (int i = 0; i < 2; i++)
-            {
-                string dealerCard = deck.DrawCard(shuffledDeck);
-                dealersHand.Add(dealerCard);
-            }
             //game.DealersTurn(playersHand, deck, shuffledDeck);
-            
-            Console.WriteLine(shuffledDeck.Count);
+
         }
         
         
-
         public Game(IConsole console)
         {
             _newConsole = console;
         }
 
-        public List<string> PlayersTurn(List<string> playersHand, Deck deck, List<string> shuffledDeck)
+
+        public List<string> DealFirstDrawCard(IDeck deck)
         {
-            string _playersOption = "1";
-            while (_playersOption == "1")
+            List<string> usersHand = new List<string>();
+            usersHand.Add(deck.DrawCard());
+            usersHand.Add(deck.DrawCard());
+
+            return usersHand;
+        }
+
+        public List<string> PlayersTurn(List<string> playersHand, IDeck deck)
+        {
+            int score = 0;
+            string playersOption = "1";
+            while (playersOption == "1" && score < 21)
             {
                 Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
-                _playersOption = Console.ReadLine();
-                if(_playersOption == "1")
+                playersOption = _newConsole.ReadLine();
+                if(playersOption == "1")
                 {
-                    playersHand.Add(deck.DrawCard(shuffledDeck));
-                    playersHand.ForEach(Console.WriteLine);
+                    playersHand.Add(deck.DrawCard());
+                    playersHand.ForEach(_newConsole.WriteLine);
+                    score = CalculateScore(playersHand);
+                    _newConsole.WriteLine("score: " + score);
                 }
                 else
                 {
@@ -83,6 +85,54 @@ namespace Black_Jack_Game
             return playersHand;
         }
         
-        
+
+        public int CalculateScore(List<string> playersHand)
+        {
+            int score = 0;
+            int numberOfAces = 0;
+
+            foreach (var i in playersHand)
+            {
+                string[] splitCard = i.Split(" ");
+
+                switch (splitCard[0])
+                {
+                    case ("Jack"):
+                        score += 10;
+                        break;
+                    case ("King"):
+                        score += 10;
+                        break;
+                    case ("Queen"):
+                        score += 10;
+                        break;
+                    case ("Ace"):
+                        numberOfAces++;
+                        break;
+                    default:
+                        score += int.Parse(splitCard[0]);
+                        break;
+                }
+            }
+
+            if (numberOfAces == 0)
+            {
+                return score;
+            }
+
+            score += (numberOfAces - 1);
+
+            if (score < 11)
+            {
+                score += 11;
+            }
+            else
+            {
+                score += 1;
+            }
+
+            return score;
+            
+        }
     }
 }

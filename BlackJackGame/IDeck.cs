@@ -9,7 +9,7 @@ namespace Black_Jack_Game
 
         public List<string> GenerateDeck();
 
-        public List<string> Shuffle(List<string> completeDeck);
+        public List<string> Shuffle();
     }
 
 }

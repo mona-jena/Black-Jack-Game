@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 namespace Black_Jack_Game
@@ -30,17 +30,16 @@ namespace Black_Jack_Game
         static void Main(string[] args)
         {
             Deck deck = new Deck();
-
-            List<string> orderedDeck = deck.GenerateDeck();
-            List<string> shuffledDeck = deck.Shuffle(orderedDeck);
+            
+            deck.Shuffle();
 
             Game game = new Game(new ConsoleActions());
 
-            List<string> playersHand = game.DealFirstDrawCard(deck, shuffledDeck);
+            List<string> playersHand = game.DealFirstDrawCard(deck);
 
-            List<string> dealersHand = game.DealFirstDrawCard(deck, shuffledDeck);
+            List<string> dealersHand = game.DealFirstDrawCard(deck);
 
-            game.PlayersTurn(playersHand, deck, shuffledDeck);
+            game.PlayersTurn(playersHand, deck);
             
             //game.DealersTurn(playersHand, deck, shuffledDeck);
 
@@ -53,29 +52,29 @@ namespace Black_Jack_Game
         }
 
 
-        public List<string> DealFirstDrawCard(IDeck deck, List<string> shuffledDeck)
+        public List<string> DealFirstDrawCard(IDeck deck)
         {
             List<string> usersHand = new List<string>();
-            usersHand.Add(deck.DrawCard(shuffledDeck));
-            usersHand.Add(deck.DrawCard(shuffledDeck));
+            usersHand.Add(deck.DrawCard());
+            usersHand.Add(deck.DrawCard());
 
             return usersHand;
         }
 
-        public List<string> PlayersTurn(List<string> playersHand, IDeck deck, List<string> shuffledDeck)
+        public List<string> PlayersTurn(List<string> playersHand, IDeck deck)
         {
             int score = 0;
             string playersOption = "1";
             while (playersOption == "1" && score < 21)
             {
                 Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
-                playersOption = Console.ReadLine();
+                playersOption = _newConsole.ReadLine();
                 if(playersOption == "1")
                 {
-                    playersHand.Add(deck.DrawCard(shuffledDeck));
-                    playersHand.ForEach(Console.WriteLine);
+                    playersHand.Add(deck.DrawCard());
+                    playersHand.ForEach(_newConsole.WriteLine);
                     score = CalculateScore(playersHand);
-                    Console.WriteLine("score: " + score);
+                    _newConsole.WriteLine("score: " + score);
                 }
                 else
                 {

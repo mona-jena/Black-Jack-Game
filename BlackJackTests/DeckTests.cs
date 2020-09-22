@@ -12,7 +12,7 @@ namespace ProgramTest
         {
             int expected = 52;
             Deck newDeck = new Deck();
-            int result = newDeck.GenerateDeck().Count;
+            int result = newDeck.CompleteDeck.Count;
             Assert.Equal(expected, result);
         }
 
@@ -77,7 +77,9 @@ namespace ProgramTest
             };
             int expected = 52;
             Deck newDeck = new Deck();
-            int result = newDeck.Shuffle(completeDeck).Count;
+            
+            newDeck.Shuffle();
+            int result = newDeck.CompleteDeck.Count();
             Assert.Equal(expected, result);
         }
 

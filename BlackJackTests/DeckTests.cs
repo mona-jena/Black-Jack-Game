@@ -87,7 +87,7 @@ namespace ProgramTest
         [Fact]
         public void TestIfDrawCardRemovesAndReturnsTopCard()
         {
-            var completeDeck = new List<string>()
+            /*var completeDeck = new List<string>()
             {
                 "5 of Diamonds",
                 "10 of Clubs",
@@ -147,7 +147,12 @@ namespace ProgramTest
             var result = newDeck.DrawCard();
             Assert.Equal(expected, result);
             
-            //HOW TO TEST A METHOD WHICH TAKES NO PARAM???
+            //HOW TO TEST A METHOD WHICH TAKES NO PARAM???*/
+            
+            int expected = 1;
+            Deck newDeck = new Deck(new ConsoleActions());
+            int result = newDeck.DrawCard().Split(" of ").Length - 1;
+            Assert.Equal(expected, result);
         }
 
         

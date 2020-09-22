@@ -24,7 +24,7 @@ namespace Black_Jack_Game
             {
                 for (int j = 0; j < values.Count; j++)
                 {
-                    string card = values[j] + " " +  suites[i];
+                    string card = values[j] + " of " +  suites[i];
                     _completeDeck.Add(card);
                 }
             }

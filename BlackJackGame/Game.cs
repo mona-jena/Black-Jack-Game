@@ -23,10 +23,11 @@ namespace Black_Jack_Game
             
     //Winner() - compare player and dealer sum
 
+    
     public class Game
     {
         IConsole _newConsole;
-        
+
         static void Main(string[] args)
         {
             Deck deck = new Deck(new ConsoleActions());
@@ -34,15 +35,14 @@ namespace Black_Jack_Game
             deck.Shuffle();
 
             Game game = new Game(new ConsoleActions());
-
+            
             List<string> playersHand = game.DealFirstDrawCard(deck);
 
             List<string> dealersHand = game.DealFirstDrawCard(deck);
 
             game.PlayersTurn(playersHand, deck);
-            
-            //game.DealersTurn(playersHand, deck, shuffledDeck);
 
+            game.DealersTurn(dealersHand, deck);
         }
         
         
@@ -50,10 +50,11 @@ namespace Black_Jack_Game
         {
             _newConsole = console;
         }
-
+        
 
         public List<string> DealFirstDrawCard(IDeck deck)
         {
+           
             List<string> usersHand = new List<string>();
             usersHand.Add(deck.DrawCard());
             usersHand.Add(deck.DrawCard());
@@ -67,7 +68,7 @@ namespace Black_Jack_Game
             string playersOption = "1";
             while (playersOption == "1" && score < 21)
             {
-                Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
+                Console.WriteLine("\nHit or stay? (Hit = 1, Stay = 0)");
                 playersOption = _newConsole.ReadLine();
                 if(playersOption == "1")
                 {
@@ -95,6 +96,8 @@ namespace Black_Jack_Game
             {
                 string[] splitCard = i.Split(" ");
 
+                int cardValue = 0;
+                
                 switch (splitCard[0])
                 {
                     case ("Jack"):
@@ -134,5 +137,22 @@ namespace Black_Jack_Game
             return score;
             
         }
+        
+
+        public List<string> DealersTurn(List<string> dealersHand, IDeck deck)
+        {
+            int score = 0;
+
+            while (score < 17)
+            {
+                dealersHand.Add(deck.DrawCard());
+                dealersHand.ForEach(Console.WriteLine);
+                score += CalculateScore(dealersHand);
+                Console.WriteLine("score: " + score);
+            }
+
+            return dealersHand;
+        }
+
     }
 }

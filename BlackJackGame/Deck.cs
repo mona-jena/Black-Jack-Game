@@ -7,11 +7,6 @@ namespace Black_Jack_Game
     public class Deck : IDeck
     {
         IConsole _newConsole;
-        
-        //Deck.Generate Deck of Cards -
-        //Deck.Shuffle deck of cards - to randomize
-        //Deck.DrawCard() - return top card from shuffled deck of cards
-        
         List<string> _completeDeck = new List<string>();
 
         public Deck(IConsole console)
@@ -34,7 +29,7 @@ namespace Black_Jack_Game
                 _newConsole.WriteLine(_completeDeck[i]);
             }
         }
-
+        
         public List<string> CompleteDeck => _completeDeck;
 
         public void Shuffle()

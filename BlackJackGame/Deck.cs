@@ -23,11 +23,6 @@ namespace Black_Jack_Game
                     _completeDeck.Add(card);
                 }
             }
-            _newConsole.WriteLine("\ncompleted deck:");
-            for (int i = 0; i <_completeDeck.Count; i++)
-            {
-                _newConsole.WriteLine(_completeDeck[i]);
-            }
         }
         
         public List<string> CompleteDeck => _completeDeck;
@@ -35,8 +30,8 @@ namespace Black_Jack_Game
         public void Shuffle()
         { 
             _completeDeck = _completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
-            _newConsole.WriteLine("\nshuffled deck:");
-            _completeDeck.ForEach(_newConsole.WriteLine);
+            // _newConsole.WriteLine("\nshuffled deck:");
+            // _completeDeck.ForEach(_newConsole.WriteLine);
             
         }
 
@@ -44,7 +39,7 @@ namespace Black_Jack_Game
         {
             String firstCard = _completeDeck[0];
             _completeDeck.RemoveAt(0);
-            _newConsole.WriteLine("\ntopcard: " + firstCard);
+            _newConsole.WriteLine("\ntopcard: " + firstCard + "\n");
             return firstCard;
         }
         

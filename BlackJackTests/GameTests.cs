@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Black_Jack_Game;
 using Xunit;
 using Moq;
@@ -74,10 +73,11 @@ namespace ProgramTest
             consoleActionsMock.SetupSequence(s => s.ReadLine())
                 .Returns("1")
                 .Returns("0");
+            int score = 8;
 
             int expected = 3;
             Game game = new Game(consoleActionsMock.Object);
-            int result = game.PlayersTurn(playersHand, deck).Count;
+            int result = game.PlayersTurn(playersHand, deck, score).Count;
             Assert.Equal(expected, result);
         }
 
@@ -151,10 +151,11 @@ namespace ProgramTest
             var deckMock = new Mock<IDeck>();
             deckMock.Setup((s => s.DrawCard()))
                 .Returns("5 of Diamonds");
+            int score = 8;
 
             List<string> expected = new List<string>() {"3 of Hearts", "5 of Clubs", "5 of Diamonds"};
             Game game = new Game(consoleActionsMock.Object);
-            List<string> result = game.PlayersTurn(playersHand, deckMock.Object);
+            List<string> result = game.PlayersTurn(playersHand, deckMock.Object, score);
             Assert.Equal(expected, result);
         }
         
@@ -298,11 +299,14 @@ namespace ProgramTest
             var deckMock = new Mock<IDeck>();
             deckMock.Setup((s => s.DrawCard()))
                 .Returns("Queen of Diamonds");
+            int score = 12;
             
             List<string> expected = new List<string>() {"8 of Spades", "4 of Diamonds", "Queen of Diamonds"};
             Game game = new Game(new ConsoleActions());
-            List<string> result = game.DealersTurn(dealersHand, deckMock.Object);
+            List<string> result = game.DealersTurn(dealersHand, deckMock.Object, score);
             Assert.Equal(expected, result);
         }
+        
+    
     }
 }

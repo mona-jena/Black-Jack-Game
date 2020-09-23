@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 namespace Black_Jack_Game
@@ -27,126 +27,125 @@ namespace Black_Jack_Game
     public class Game
     {
         IConsole _newConsole;
-        public static void Main(string[] args)
+
+        static void Main(string[] args)
         {
-            Deck deck = new Deck();
-            List<string> orderedDeck = deck.GenerateDeck();
-            List<string> shuffledDeck = deck.Shuffle(orderedDeck);
+            Deck deck = new Deck(new ConsoleActions());
+            
+            deck.Shuffle();
 
             Game game = new Game(new ConsoleActions());
-
-            List<string> playersHand = game.DealFirstTwoCards(deck, shuffledDeck);
-            Console.WriteLine("\nDraw 2 cards for player: ");
-            playersHand.ForEach(Console.WriteLine);
-            int playersScore = game.CalculateScore(playersHand);
-            Console.WriteLine("Score: " + playersScore);
             
-            List<string> dealersHand = game.DealFirstTwoCards(deck, shuffledDeck);
-            Console.WriteLine("\nDraw 2 cards for dealer: ");
-            dealersHand.ForEach(Console.WriteLine);
-            int dealersScore = game.CalculateScore(dealersHand);
-            Console.WriteLine("Score: " + dealersScore);
+            List<string> playersHand = game.DealFirstDrawCard(deck);
 
-            game.PlayersTurn(playersHand, deck, shuffledDeck);
+            List<string> dealersHand = game.DealFirstDrawCard(deck);
 
-            Console.WriteLine("\nDealers Turn: ");
-            game.DealersTurn(dealersHand, deck, shuffledDeck);
-            
+            game.PlayersTurn(playersHand, deck);
+
+            game.DealersTurn(playersHand, deck);
         }
         
-
+        
         public Game(IConsole console)
         {
             _newConsole = console;
         }
         
 
-        public List<string> DealFirstTwoCards(Deck deck, List<string> shuffledDeck)
+        public List<string> DealFirstDrawCard(IDeck deck)
         {
            
             List<string> usersHand = new List<string>();
-            
-            for (int i = 0; i < 2; i++)
-            {
-                string dealerCard = deck.DrawCard(shuffledDeck);
-                usersHand.Add(dealerCard);
-            }
+            usersHand.Add(deck.DrawCard());
+            usersHand.Add(deck.DrawCard());
 
             return usersHand;
         }
 
-        
-        public List<string> PlayersTurn(List<string> playersHand, IDeck deck, List<string> shuffledDeck)
+        public List<string> PlayersTurn(List<string> playersHand, IDeck deck)
         {
             int score = 0;
-            string _playersOption = "1";
-            while (_playersOption == "1" && score < 21)
+            string playersOption = "1";
+            while (playersOption == "1" && score < 21)
             {
                 Console.WriteLine("\nHit or stay? (Hit = 1, Stay = 0)");
-                _playersOption = _newConsole.ReadLine();
-                if(_playersOption == "1")
+                playersOption = _newConsole.ReadLine();
+                if(playersOption == "1")
                 {
-                    playersHand.Add(deck.DrawCard(shuffledDeck));
-                    playersHand.ForEach(Console.WriteLine);
+                    playersHand.Add(deck.DrawCard());
+                    playersHand.ForEach(_newConsole.WriteLine);
                     score = CalculateScore(playersHand);
-                    Console.WriteLine("score: " + score);
+                    _newConsole.WriteLine("score: " + score);
                 }
                 else
                 {
                     break;
                 }
             }
+
             return playersHand;
         }
         
-        
+
         public int CalculateScore(List<string> playersHand)
         {
             int score = 0;
+            int numberOfAces = 0;
+
             foreach (var i in playersHand)
             {
                 string[] splitCard = i.Split(" ");
 
                 int cardValue = 0;
-                    
+                
                 switch (splitCard[0])
                 {
                     case ("Jack"):
-                        cardValue = 10;
+                        score += 10;
                         break;
                     case ("King"):
-                        cardValue = 10;
+                        score += 10;
                         break;
                     case ("Queen"):
-                        cardValue = 10;
+                        score += 10;
                         break;
                     case ("Ace"):
-                        cardValue = 11;
+                        numberOfAces++;
                         break;
                     default:
-                        cardValue = int.Parse(splitCard[0]);
+                        score += int.Parse(splitCard[0]);
                         break;
                 }
-     
-                score += cardValue;
             }
-            return score;
-        }
 
-        
-        public void AceCondition(int score)
-        {
+            if (numberOfAces == 0)
+            {
+                return score;
+            }
+
+            score += (numberOfAces - 1);
+
+            if (score < 11)
+            {
+                score += 11;
+            }
+            else
+            {
+                score += 1;
+            }
+
+            return score;
             
         }
         
 
-        public List<string> DealersTurn(List<string> dealersHand, IDeck deck, List<string> shuffledDeck)
+        public List<string> DealersTurn(List<string> dealersHand, IDeck deck)
         {
             int score = 0;
 
             while (score < 17)
             {
-                dealersHand.Add(deck.DrawCard(shuffledDeck));
+                dealersHand.Add(deck.DrawCard());
                 dealersHand.ForEach(Console.WriteLine);
                 score += CalculateScore(dealersHand);
                 Console.WriteLine("score: " + score);

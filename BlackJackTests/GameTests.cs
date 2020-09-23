@@ -11,7 +11,7 @@ namespace ProgramTest
         [Fact]
         public void TestIfPlayersTurnTakesUserInputAndDrawsCard()
         {
-            Deck deck = new Deck() { };
+            Deck deck = new Deck(new ConsoleActions());
 
             List<string> shuffledDeck = new List<string>()
             {
@@ -77,14 +77,14 @@ namespace ProgramTest
 
             int expected = 3;
             Game game = new Game(consoleActionsMock.Object);
-            int result = game.PlayersTurn(playersHand, deck, shuffledDeck).Count;
+            int result = game.PlayersTurn(playersHand, deck).Count;
             Assert.Equal(expected, result);
         }
 
         [Fact]
         public void TestIfPlayersTurnReturnsTopCardFromDrawCardMethod()
         {
-            Deck deck = new Deck() { };
+            Deck deck = new Deck(new ConsoleActions());
 
             List<string> shuffledDeck = new List<string>()
             {
@@ -149,18 +149,18 @@ namespace ProgramTest
                 .Returns("0");
 
             var deckMock = new Mock<IDeck>();
-            deckMock.Setup((s => s.DrawCard(shuffledDeck)))
+            deckMock.Setup((s => s.DrawCard()))
                 .Returns("5 of Diamonds");
 
             List<string> expected = new List<string>() {"3 of Hearts", "5 of Clubs", "5 of Diamonds"};
             Game game = new Game(consoleActionsMock.Object);
-            List<string> result = game.PlayersTurn(playersHand, deckMock.Object, shuffledDeck);
+            List<string> result = game.PlayersTurn(playersHand, deckMock.Object);
             Assert.Equal(expected, result);
         }
         
         [Theory]
         [InlineData("3 of Hearts", "5 of Clubs", "5 of Diamonds", 13)]
-        [InlineData("Ace of Hearts", "5 of Clubs", "Queen of Diamonds", 26)]
+        [InlineData("Ace of Hearts", "5 of Clubs", "Queen of Diamonds", 16)]
         public void TestIfCalculateScoreReturnsTotalSumOfPlayersHand(string card1, string card2, string card3, int expected)
         {
             List<string> playersHand = new List<string>();
@@ -174,11 +174,10 @@ namespace ProgramTest
         }
 
         
-        // ############ CHECK TEST BELOW ###########
         [Fact]
         public void TestIfDealersTurnStopsDrawingCardsWhenScoreReachesSeventeen()
         {
-            Deck deck = new Deck() { };
+            Deck deck = new Deck(new ConsoleActions()) { };
 
             List<string> shuffledDeck = new List<string>()
             {
@@ -239,12 +238,12 @@ namespace ProgramTest
             List<string> dealersHand = new List<string>() {"8 of Spades", "4 of Diamonds"};
             
             var deckMock = new Mock<IDeck>();
-            deckMock.Setup((s => s.DrawCard(shuffledDeck)))
+            deckMock.Setup((s => s.DrawCard()))
                 .Returns("Queen of Diamonds");
             
             List<string> expected = new List<string>() {"8 of Spades", "4 of Diamonds", "Queen of Diamonds"};
             Game game = new Game(new ConsoleActions());
-            List<string> result = game.DealersTurn(dealersHand, deckMock.Object, shuffledDeck);
+            List<string> result = game.DealersTurn(dealersHand, deckMock.Object);
             Assert.Equal(expected, result);
         }
     }

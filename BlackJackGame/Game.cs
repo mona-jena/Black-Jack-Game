@@ -42,7 +42,7 @@ namespace Black_Jack_Game
 
             game.PlayersTurn(playersHand, deck);
 
-            game.DealersTurn(playersHand, deck);
+            game.DealersTurn(dealersHand, deck);
         }
         
         

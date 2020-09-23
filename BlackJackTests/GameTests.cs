@@ -172,6 +172,64 @@ namespace ProgramTest
             int result = game.CalculateScore(playersHand);
             Assert.Equal(expected, result);
         }
+        
+        
+        [Theory]
+        [InlineData("2 of Hearts", "5 of Clubs", "4 of Diamonds", "10 of Spades", 21)]
+        [InlineData("6 of Diamonds", "Ace of Hearts", "5 of Clubs", "7 of Diamonds", 19)]
+        [InlineData("6 of Diamonds", "1 of Hearts", "6 of Clubs", "7 of Diamonds", 20)]
+        [InlineData("2 of Diamonds", "Ace of Hearts", "King of Clubs", "7 of Diamonds", 20)]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWithFourCards(string card1, string card2, string card3, string card4, int expected)
+        {
+            List<string> playersHand = new List<string>();
+            playersHand.Add(card1);
+            playersHand.Add(card2);
+            playersHand.Add(card3);
+            playersHand.Add(card4);
+            
+            Game game = new Game(new ConsoleActions());
+            int result = game.CalculateScore(playersHand);
+            Assert.Equal(expected, result);
+        }
+        
+        
+        [Theory]
+        [InlineData("2 of Hearts", "2 of Clubs", "4 of Diamonds", "10 of Spades", "Ace of Diamonds", 19)]
+        [InlineData("6 of Diamonds", "Ace of Hearts", "5 of Clubs", "7 of Diamonds", "8 of Clubs", 27)]
+        [InlineData("6 of Diamonds", "1 of Hearts", "6 of Clubs", "7 of Diamonds", "Ace of Diamonds", 21)]
+        [InlineData("2 of Diamonds", "Ace of Hearts", "King of Clubs", "7 of Diamonds", "Ace of Diamonds", 21)]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWithFiveCards(string card1, string card2, string card3, string card4, string card5, int expected)
+        {
+            List<string> playersHand = new List<string>();
+            playersHand.Add(card1);
+            playersHand.Add(card2);
+            playersHand.Add(card3);
+            playersHand.Add(card4);
+            playersHand.Add(card5);
+            
+            Game game = new Game(new ConsoleActions());
+            int result = game.CalculateScore(playersHand);
+            Assert.Equal(expected, result);
+        }
+        
+        
+        [Theory]
+        [InlineData("2 of Hearts", "2 of Clubs", 4)]
+        [InlineData("6 of Diamonds", "Ace of Hearts", 17)]
+        [InlineData("6 of Diamonds", "1 of Hearts", 7)]
+        [InlineData("2 of Diamonds", "Ace of Hearts", 13)]
+        [InlineData("10 of Diamonds", "Ace of Hearts", 21)]
+        [InlineData("Ace of Diamonds", "Ace of Hearts", 12)]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWithTwoCards(string card1, string card2, int expected)
+        {
+            List<string> playersHand = new List<string>();
+            playersHand.Add(card1);
+            playersHand.Add(card2);
+
+            Game game = new Game(new ConsoleActions());
+            int result = game.CalculateScore(playersHand);
+            Assert.Equal(expected, result);
+        }
 
         
         [Fact]

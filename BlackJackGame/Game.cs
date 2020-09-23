@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Black_Jack_Game
@@ -36,12 +36,13 @@ namespace Black_Jack_Game
 
             Game game = new Game(new ConsoleActions());
             
-            List<string> playersHand = game.DealFirstDrawCard(deck);
+            List<string> playersHand = game.DrawFirstTwoCards(deck);
 
-            List<string> dealersHand = game.DealFirstDrawCard(deck);
+            List<string> dealersHand = game.DrawFirstTwoCards(deck);
 
             game.PlayersTurn(playersHand, deck);
-
+            
+            Console.WriteLine("\nDealers Turn:");
             game.DealersTurn(dealersHand, deck);
         }
         
@@ -52,9 +53,8 @@ namespace Black_Jack_Game
         }
         
 
-        public List<string> DealFirstDrawCard(IDeck deck)
+        public List<string> DrawFirstTwoCards(IDeck deck)
         {
-           
             List<string> usersHand = new List<string>();
             usersHand.Add(deck.DrawCard());
             usersHand.Add(deck.DrawCard());
@@ -135,19 +135,18 @@ namespace Black_Jack_Game
             }
 
             return score;
-            
         }
         
 
         public List<string> DealersTurn(List<string> dealersHand, IDeck deck)
         {
-            int score = 0;
+            int score = CalculateScore(dealersHand);
 
             while (score < 17)
             {
                 dealersHand.Add(deck.DrawCard());
                 dealersHand.ForEach(Console.WriteLine);
-                score += CalculateScore(dealersHand);
+                score = CalculateScore(dealersHand);
                 Console.WriteLine("score: " + score);
             }
 

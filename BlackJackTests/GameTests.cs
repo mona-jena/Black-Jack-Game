@@ -1,4 +1,4 @@
-/*using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Black_Jack_Game;
 using Xunit;
@@ -8,6 +8,100 @@ namespace ProgramTest
 {
     public class GameTests
     {
+        [Fact]
+        public void TestIfDrawFirstTwoCardsReturnsTwoCards()
+        {
+            var shuffledDeck = new List<string>()
+            {
+                "8,Diamonds",
+                "6,Hearts",
+                "2,Clubs",
+                "3,Clubs",
+                "4,Clubs",
+                "5,Clubs",
+                "6,Clubs",
+                "7,Clubs",
+                "8,Clubs",
+                "9,Clubs",
+                "10,Clubs",
+                "Jack,Clubs",
+                "Queen,Clubs",
+                "King,Clubs",
+                "Ace,Clubs",
+                "2,Diamonds",
+                "3,Diamonds",
+                "4,Diamonds",
+                "5,Diamonds",
+                "6,Diamonds",
+                "7,Diamonds",
+                "9,Diamonds",
+                "10,Diamonds",
+                "Jack,Diamonds",
+                "Queen,Diamonds",
+                "King,Diamonds",
+                "Ace,Diamonds",
+                "2,Hearts",
+                "3,Hearts",
+                "4,Hearts",
+                "5,Hearts",
+                "7,Hearts",
+                "8,Hearts",
+                "9,Hearts",
+                "10,Hearts",
+                "Jack,Hearts",
+                "Queen,Hearts",
+                "King,Hearts",
+                "Ace,Hearts",
+                "2,Spades",
+                "3,Spades",
+                "4,Spades",
+                "5,Spades",
+                "6,Spades",
+                "7,Spades",
+                "8,Spades",
+                "9,Spades",
+                "10,Spades",
+                "Jack,Spades",
+                "Queen,Spades",
+                "King,Spades",
+                "Ace,Spades"
+            };
+            
+            var newDeck = new List<Card>();
+            for (int i = 0; i < shuffledDeck.Count; i++)
+            {
+                string[] splitCard =  shuffledDeck[i].Split(",");
+                Card card = new Card()
+                {
+                    Suite = splitCard[1],
+                    Value = splitCard[0]
+                };
+                newDeck.Add(card);
+            }
+            
+            
+            Game game = new Game(new ConsoleActions());
+
+            var usersHand = new List<Card>();
+            Card card1 = new Card()
+            {
+                Suite = "Diamonds",
+                Value = "8"
+            };
+            usersHand.Add(card1);
+            Card card2 = new Card()
+            {
+                Suite = "Hearts",
+                Value = "6"
+            };
+            usersHand.Add(card2);
+
+            var result = game.DrawFirstTwoCards(new Deck(new ConsoleActions()));
+            Assert.Equal(usersHand, result);
+        }
+        
+        
+        
         [Fact]
         public void TestIfPlayersTurnTakesUserInputAndReturnsScore()
         {
@@ -65,19 +159,11 @@ namespace ProgramTest
                 "[Queen, Spades]",
                 "[King, Spades]",
                 "[Ace, Spades]"
-            }; 
-            var CardDeck = shuffledDeck.Select(i => i.)
-                //split_String = string.Split(" ");
-                //for loop
-                Card card = new Card()
-                {
-                    Suite = split_string[2];
-                        Value = split_stirng[0];
-                }
-            
-            //IDeck deck = new Deck(new ConsoleActions()){CompleteDeck = shuffledDeck};
+            };
 
-            List<string> playersHand = new List<string>() {"3 of Hearts", "5 of Clubs"};
+            IDeck deck = new Deck(new ConsoleActions());
+
+            List<Card> playersHand = new List<Card>() {"3 of Hearts", "5 of Clubs"};
             var consoleActionsMock = new Mock<IConsole>();
             consoleActionsMock.SetupSequence(s => s.ReadLine())
                 .Returns("1")
@@ -88,7 +174,7 @@ namespace ProgramTest
             Game game = new Game(consoleActionsMock.Object);
             int result = game.PlayersTurn(playersHand, deck, intialScore);
             Assert.Equal(expected, result);
-            Assert.True(list1.);
+            //Assert.True(list1.);
         }
 
         [Fact]
@@ -165,7 +251,7 @@ namespace ProgramTest
 
             List<string> expected = new List<string>() {"3 of Hearts", "5 of Clubs", "5 of Diamonds"};
             Game game = new Game(consoleActionsMock.Object);
-            List<string> result = game.PlayersTurn(playersHand, deckMock.Object, initialScore);
+            List<Card> result = game.PlayersTurn(playersHand, deckMock.Object, initialScore);
             Assert.Equal(expected, result);
         }
         //check if it removed index 0
@@ -193,7 +279,7 @@ namespace ProgramTest
         [InlineData("2 of Diamonds", "Ace of Hearts", "King of Clubs", "7 of Diamonds", 20)]
         public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWithFourCards(string card1, string card2, string card3, string card4, int expected)
         {
-            List<string> playersHand = new List<string>();
+            List<Card> playersHand = new List<Card>();
             playersHand.Add(card1);
             playersHand.Add(card2);
             playersHand.Add(card3);
@@ -322,4 +408,4 @@ namespace ProgramTest
         // FIX ABOVE TESTS
         // WRITE TESTS FOR NEW METHODS w/o looking
     }
-}*/
+}

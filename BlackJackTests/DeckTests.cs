@@ -78,6 +78,10 @@ namespace ProgramTest
                 "King,Spades",
                 "Ace,Spades"
             };
+
+            //var deckTest = new Deck(new ConsoleActions());
+            //deckTest.completeDeck.Select(Card => $"{Card.Value},{Card.Suite}");
+           
             
             var newDeck = new List<Card>();
             for (int i = 0; i < completeDeck.Count; i++)

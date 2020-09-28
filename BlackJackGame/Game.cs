@@ -7,8 +7,8 @@ namespace Black_Jack_Game
     public class Game
     {
         IConsole _newConsole;
-        private bool ifPlayersTurn = false;
-        private bool ifGameOver = false;
+        //private bool ifPlayersTurn = false;
+        private static bool ifGameOver = false;
         
         static void Main(string[] args)
         {
@@ -30,9 +30,15 @@ namespace Black_Jack_Game
             
             playersScore = game.PlayersTurn(playersHand, deck, playersScore);
 
-            dealersScore = game.DealersTurn(dealersHand, deck, dealersScore);
+            if (ifGameOver == false){
+                dealersScore = game.DealersTurn(dealersHand, deck, dealersScore);
+            }
 
-            game.IsWinner(playersScore, dealersScore);
+            if (ifGameOver == false)
+            {
+                game.IsWinner(playersScore, dealersScore);
+            }
+            
         }
         
         
@@ -64,7 +70,7 @@ namespace Black_Jack_Game
             WinOrLossForPlayerDuringGame(score, playersHand);
             
             string playersOption = "1";
-            while (playersOption == "1" && score < 21)
+            while (playersOption == "1" && score < 21 && ifGameOver == false)
             {
                 _newConsole.WriteLine("\nHit or stay? (Hit = 1, Stay = 0)");
                 playersOption = _newConsole.ReadLine();
@@ -87,6 +93,25 @@ namespace Black_Jack_Game
             WinOrLossForPlayerDuringGame(score, playersHand);
 
             return score;
+        }
+        
+        public void WinOrLossForPlayerDuringGame(int score, List<Card> playersHand)
+        {
+            if (score == 21)
+            {
+                _newConsole.WriteLine("Black Jack! You beat the dealer!");
+                ifGameOver = true;
+            } 
+            else if (score > 21)
+            {
+                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
+                foreach (var i in playersHand)
+                {
+                    _newConsole.WriteLine(i.ToString());
+                }
+                _newConsole.WriteLine("\nDealer Wins!");
+                ifGameOver = true;
+            }
         }
         
 
@@ -148,7 +173,7 @@ namespace Black_Jack_Game
             
             WinOrLossForDealerDuringGame(score, dealersHand);
             
-            while (score < 17)
+            while (score < 17 && (ifGameOver == false))
             {
                 dealersHand.Add(deck.DrawCard());
                 foreach (var i in dealersHand)
@@ -164,25 +189,6 @@ namespace Black_Jack_Game
             return score;
         }
         
-
-        public void WinOrLossForPlayerDuringGame(int score, List<Card> playersHand)
-        {
-            if (score == 21)
-            {
-                _newConsole.WriteLine("Black Jack! You beat the dealer!");
-                Environment.Exit(0);
-            } 
-            else if (score > 21)
-            {
-                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
-                foreach (var i in playersHand)
-                {
-                    _newConsole.WriteLine(i.ToString());
-                }
-                _newConsole.WriteLine("\nDealer Wins!");
-                Environment.Exit(0);
-            }
-        }
         
         
         public void WinOrLossForDealerDuringGame(int score, List<Card> dealersHand)
@@ -190,7 +196,7 @@ namespace Black_Jack_Game
             if (score == 21)
             {
                 _newConsole.WriteLine("Black Jack! Dealer wins!");
-                Environment.Exit(0);
+                ifGameOver = true;
             } 
             else if (score > 21)
             {
@@ -200,7 +206,7 @@ namespace Black_Jack_Game
                     _newConsole.WriteLine(i.ToString());
                 }
                 _newConsole.WriteLine("\nPlayer Wins!");
-                Environment.Exit(0);
+                ifGameOver = true;
             }
         }
         

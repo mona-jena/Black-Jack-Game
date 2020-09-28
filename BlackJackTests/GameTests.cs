@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 using System.Linq;
 using Black_Jack_Game;
 using Xunit;
@@ -22,7 +22,7 @@ namespace ProgramTest
                 "[7, Clubs]",
                 "[8, Clubs]",
                 "[9, Clubs]",
-                "[Kind, Diamonds]",
+                "[King, Diamonds]",
                 "[Jack, Clubs]",
                 "[Queen, Clubs]",
                 "[Kind, Clubs]",
@@ -51,7 +51,7 @@ namespace ProgramTest
                 "[Jack, Hearts]",
                 "[2, Clubs]",
                 "[Queen, Hearts]",
-                "[Kind, Hearts]",
+                "[King, Hearts]",
                 "[Ace, Hearts]",
                 "[2, Spades]",
                 "[3, Spades]",
@@ -63,7 +63,7 @@ namespace ProgramTest
                 "[9, Spades]",
                 "[10, Spades]",
                 "[Queen, Spades]",
-                "[Kind, Spades]",
+                "[King, Spades]",
                 "[Ace, Spades]"
             }; 
             var CardDeck = shuffledDeck.Select(i => i.)
@@ -110,7 +110,7 @@ namespace ProgramTest
                 "Kind of Diamonds",
                 "Jack of Clubs",
                 "Queen of Clubs",
-                "Kind of Clubs",
+                "King of Clubs",
                 "Ace of Clubs",
                 "2 of Diamonds",
                 "3 of Diamonds",
@@ -136,7 +136,7 @@ namespace ProgramTest
                 "Jack of Hearts",
                 "2 of Clubs",
                 "Queen of Hearts",
-                "Kind of Hearts",
+                "King of Hearts",
                 "Ace of Hearts",
                 "2 of Spades",
                 "3 of Spades",
@@ -148,7 +148,7 @@ namespace ProgramTest
                 "9 of Spades",
                 "10 of Spades",
                 "Queen of Spades",
-                "Kind of Spades",
+                "King of Spades",
                 "Ace of Spades"
             };
 
@@ -322,4 +322,4 @@ namespace ProgramTest
         // FIX ABOVE TESTS
         // WRITE TESTS FOR NEW METHODS w/o looking
     }
-}
+}*/

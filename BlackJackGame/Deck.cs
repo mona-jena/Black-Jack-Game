@@ -7,7 +7,7 @@ namespace Black_Jack_Game
     public class Deck : IDeck
     {
         IConsole _newConsole;
-        List<Card> completeDeck = new List<Card>();
+        public List<Card> completeDeck { get; set; } = new List<Card>();
 
         public Deck(IConsole console)
         {
@@ -27,8 +27,7 @@ namespace Black_Jack_Game
                 }
             }
         }
-        
-        public List<Card> CompleteDeck { get; set; }
+
       
         public void Shuffle()
         { 

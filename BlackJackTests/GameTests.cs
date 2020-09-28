@@ -66,7 +66,7 @@ namespace ProgramTest
                 "Ace,Spades"
             };
             
-            var newDeck = new List<Card>();
+            /*var newDeck = new List<Card>();
             for (int i = 0; i < shuffledDeck.Count; i++)
             {
                 string[] splitCard =  shuffledDeck[i].Split(",");
@@ -96,7 +96,14 @@ namespace ProgramTest
             usersHand.Add(card2);
 
             var result = game.DrawFirstTwoCards(new Deck(new ConsoleActions()));
-            Assert.Equal(usersHand, result);
+            Assert.Equal(usersHand, result);*/
+            
+            Deck newDeck = new Deck(new ConsoleActions());
+            Game newGame = new Game(new ConsoleActions());
+            var result = newGame.DrawFirstTwoCards(newDeck);
+            var expected = 2;
+            Assert.Equal(result.Count, expected);
+
         }
         
         

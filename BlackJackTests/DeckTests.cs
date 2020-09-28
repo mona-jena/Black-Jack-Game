@@ -1,9 +1,6 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data;
 using System.Linq;
 using Black_Jack_Game;
-using Microsoft.VisualBasic;
 using Xunit;
 
 namespace ProgramTest
@@ -79,26 +76,14 @@ namespace ProgramTest
                 "Ace,Spades"
             };
 
-            //var deckTest = new Deck(new ConsoleActions());
-            //deckTest.completeDeck.Select(Card => $"{Card.Value},{Card.Suite}");
-           
-            
-            var newDeck = new List<Card>();
-            for (int i = 0; i < completeDeck.Count; i++)
-            {
-                string[] splitCard =  completeDeck[i].Split(",");
-                Card card = new Card()
-                {
-                    Suite = splitCard[1],
-                    Value = splitCard[0]
-                };
-                newDeck.Add(card);
+            var deckTest = new Deck(new ConsoleActions());
+
+            for (int c = 0; c < 52; c++)
+            { 
+                var actual = $"{deckTest.completeDeck[c].Value},{deckTest.completeDeck[c].Suite}";
+                Assert.Equal(completeDeck[c], actual);
             }
-            
-            Deck deck = new Deck(new ConsoleActions());
-            var result = deck.completeDeck;
-            
-            Assert.True(newDeck.Equals(result));
+           
         }
         
 
@@ -167,10 +152,6 @@ namespace ProgramTest
             List<Card> shuffledDeck = newDeck.completeDeck;
             
             Assert.False(unshuffledDeck.Equals(shuffledDeck));
-            /*for(int i = 0; i<completeDeck.Count; i++)
-            {
-                Assert.False(unshuffledDecki.Equals(shuffledDecki));
-            }*/
         }
 
         [Fact]

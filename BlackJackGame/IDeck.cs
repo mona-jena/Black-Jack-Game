@@ -5,7 +5,7 @@ namespace Black_Jack_Game
 {
     public interface IDeck
     {
-        public string DrawCard();
+        public Card DrawCard();
 
         public void Shuffle();
     }

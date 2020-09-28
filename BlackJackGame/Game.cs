@@ -7,7 +7,9 @@ namespace Black_Jack_Game
     public class Game
     {
         IConsole _newConsole;
-
+        private bool ifPlayersTurn = false;
+        private bool ifGameOver = false;
+        
         static void Main(string[] args)
         {
             Deck deck = new Deck(new ConsoleActions());
@@ -16,21 +18,21 @@ namespace Black_Jack_Game
 
             Game game = new Game(new ConsoleActions());
             
-            List<string> playersHand = game.DrawFirstTwoCards(deck);
+            List<Card> playersHand = game.DrawFirstTwoCards(deck);
             int playersScore = game.CalculateScore(playersHand);
             playersHand.ForEach(Console.WriteLine);
             Console.WriteLine("score: " + playersScore + "\n");
 
-            List<string> dealersHand = game.DrawFirstTwoCards(deck);
+            List<Card> dealersHand = game.DrawFirstTwoCards(deck);
             int dealersScore = game.CalculateScore(dealersHand);
             dealersHand.ForEach(Console.WriteLine);
             Console.WriteLine("score: " + dealersScore + "\n");
             
             playersScore = game.PlayersTurn(playersHand, deck, playersScore);
-            
+
             dealersScore = game.DealersTurn(dealersHand, deck, dealersScore);
 
-            IsWinner(playersScore, dealersScore);
+            game.IsWinner(playersScore, dealersScore);
         }
         
         
@@ -40,9 +42,9 @@ namespace Black_Jack_Game
         }
         
         
-        public List<string> DrawFirstTwoCards(IDeck deck)
+        public List<Card> DrawFirstTwoCards(IDeck deck)
         {
-            List<string> usersHand = new List<string>();
+            List<Card> usersHand = new List<Card>();
             usersHand.Add(deck.DrawCard());
             usersHand.Add(deck.DrawCard());
 
@@ -50,10 +52,13 @@ namespace Black_Jack_Game
         }
 
         
-        public int PlayersTurn(List<string> playersHand, IDeck deck, int score)
+        public int PlayersTurn(List<Card> playersHand, IDeck deck, int score)
         {
             _newConsole.WriteLine("Player's Turn:");
-            playersHand.ForEach(_newConsole.WriteLine);
+            foreach (var i in playersHand)
+            {
+                _newConsole.WriteLine(i.ToString());
+            }
             _newConsole.WriteLine("score: " + score + "\n");
             
             WinOrLossForPlayerDuringGame(score, playersHand);
@@ -61,12 +66,15 @@ namespace Black_Jack_Game
             string playersOption = "1";
             while (playersOption == "1" && score < 21)
             {
-                Console.WriteLine("\nHit or stay? (Hit = 1, Stay = 0)");
+                _newConsole.WriteLine("\nHit or stay? (Hit = 1, Stay = 0)");
                 playersOption = _newConsole.ReadLine();
                 if(playersOption == "1")
                 {
                     playersHand.Add(deck.DrawCard());
-                    playersHand.ForEach(_newConsole.WriteLine);
+                    foreach (var i in playersHand)
+                    {
+                        _newConsole.WriteLine(i.ToString());
+                    }
                     score = CalculateScore(playersHand);
                     _newConsole.WriteLine("score: " + score + "\n");
                 }
@@ -82,18 +90,14 @@ namespace Black_Jack_Game
         }
         
 
-        public int CalculateScore(List<string> playersHand)
+        public int CalculateScore(List<Card> playersHand)
         {
             int score = 0;
             int numberOfAces = 0;
 
-            foreach (var i in playersHand)
+            foreach (var card in playersHand)
             {
-                string[] splitCard = i.Split(" ");
-
-                int cardValue = 0;
-                
-                switch (splitCard[0])
+                switch (card.Value)
                 {
                     case ("Jack"):
                         score += 10;
@@ -108,7 +112,7 @@ namespace Black_Jack_Game
                         numberOfAces++;
                         break;
                     default:
-                        score += int.Parse(splitCard[0]);
+                        score += int.Parse(card.Value);
                         break;
                 }
             }
@@ -133,18 +137,26 @@ namespace Black_Jack_Game
         }
         
 
-        public int DealersTurn(List<string> dealersHand, IDeck deck, int score)
+        public int DealersTurn(List<Card> dealersHand, IDeck deck, int score)
         {
             _newConsole.WriteLine("Dealer's Turn:");
-            dealersHand.ForEach(_newConsole.WriteLine);
+            foreach (var i in dealersHand)
+            {
+                _newConsole.WriteLine(i.ToString());
+            }
             _newConsole.WriteLine("score: " + score + "\n");
+            
+            WinOrLossForDealerDuringGame(score, dealersHand);
             
             while (score < 17)
             {
                 dealersHand.Add(deck.DrawCard());
-                dealersHand.ForEach(Console.WriteLine);
+                foreach (var i in dealersHand)
+                {
+                    _newConsole.WriteLine(i.ToString());
+                }
                 score = CalculateScore(dealersHand);
-                Console.WriteLine("score: " + score + "\n");
+                _newConsole.WriteLine("score: " + score + "\n");
             }
 
             WinOrLossForDealerDuringGame(score, dealersHand);
@@ -153,53 +165,59 @@ namespace Black_Jack_Game
         }
         
 
-        public void WinOrLossForPlayerDuringGame(int score, List<string> playersHand)
+        public void WinOrLossForPlayerDuringGame(int score, List<Card> playersHand)
         {
             if (score == 21)
             {
-                Console.WriteLine("Black Jack! You beat the dealer!");
+                _newConsole.WriteLine("Black Jack! You beat the dealer!");
                 Environment.Exit(0);
             } 
             else if (score > 21)
             {
-                Console.Write("You are at currently at Bust with the hand: \n");
-                playersHand.ForEach(Console.WriteLine);
-                Console.WriteLine("\nDealer Wins!");
+                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
+                foreach (var i in playersHand)
+                {
+                    _newConsole.WriteLine(i.ToString());
+                }
+                _newConsole.WriteLine("\nDealer Wins!");
                 Environment.Exit(0);
             }
         }
         
         
-        public void WinOrLossForDealerDuringGame(int score, List<string> dealersHand)
+        public void WinOrLossForDealerDuringGame(int score, List<Card> dealersHand)
         {
             if (score == 21)
             {
-                Console.WriteLine("Black Jack! Dealer wins!");
+                _newConsole.WriteLine("Black Jack! Dealer wins!");
                 Environment.Exit(0);
             } 
             else if (score > 21)
             {
-                Console.WriteLine("You are at currently at Bust with the hand: \n");
-                dealersHand.ForEach(Console.WriteLine);
-                Console.WriteLine("\nPlayer Wins!");
+                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
+                foreach (var i in dealersHand)
+                {
+                    _newConsole.WriteLine(i.ToString());
+                }
+                _newConsole.WriteLine("\nPlayer Wins!");
                 Environment.Exit(0);
             }
         }
         
         
-        public static void IsWinner(int playersScore, int dealersScore)
+        public void IsWinner(int playersScore, int dealersScore)
         {
             if (playersScore > dealersScore)
             {
-                Console.WriteLine("Player Wins!");
+                _newConsole.WriteLine("Player Wins!");
             } 
             else if (playersScore < dealersScore)
             {
-                Console.WriteLine("Dealer Wins!");
+                _newConsole.WriteLine("Dealer Wins!");
             }
             else
             {
-                Console.WriteLine("It's a draw!");
+                _newConsole.WriteLine("It's a draw!");
             }
         }
 

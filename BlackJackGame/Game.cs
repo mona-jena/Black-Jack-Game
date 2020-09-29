@@ -186,7 +186,7 @@ namespace Black_Jack_Game
             {
                 var result = ifPlayersTurn ? "Black Jack! You beat the dealer!" : "Black Jack! Dealer wins!";
                 ifGameOver = true;
-                Console.WriteLine(result);
+                _newConsole.WriteLine(result);
             }
             else if (score > 21)
             {
@@ -198,7 +198,7 @@ namespace Black_Jack_Game
 
                 var result = ifPlayersTurn ? "\nDealer Wins!" : "\nPlayer Wins!";
                 ifGameOver = true;
-                Console.WriteLine(result);
+                _newConsole.WriteLine(result);
             }
         }
         

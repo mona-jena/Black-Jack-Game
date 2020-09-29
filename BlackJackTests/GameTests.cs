@@ -279,8 +279,8 @@ namespace ProgramTest
             }
         }
         
-        // Can't test print statement if ifPlayersTurn = true as cannot change this local class variable 
-        // Can't test if score > 21 as the other print statements get in the way
+        // CAN'T TEST print statement if ifPlayersTurn = true as cannot change this local class variable 
+        // CAN'T TEST if score > 21 as the other print statements get in the way
         
         /*[Fact]
         public void TestIfWinOrLossDuringGamePrintsCorrectlyWhenItsDealersTurnAndScoreIsOver21()
@@ -305,6 +305,41 @@ namespace ProgramTest
                 Assert.Equal(expected, sw.ToString());
             }
         }*/
+        
+        
+        [Theory]
+        [InlineData(15, 20)]
+        [InlineData(18, 16)]
+        [InlineData(18, 18)]
+        public void TestIfIsWinnerPrintsCorrectOutput(int playersScore, int dealersScore)
+        {
+            
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                
+                Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+                Deck deck = new Deck(new ConsoleActions());
+                game.IsWinner(playersScore, dealersScore);
+
+                string expected = "";
+                if (playersScore > dealersScore)
+                {
+                    expected = string.Format("Player Wins!{0}", Environment.NewLine);
+                } 
+                else if (playersScore < dealersScore)
+                {
+                    expected = string.Format("Dealer Wins!{0}", Environment.NewLine);
+                }
+                else
+                {
+                    expected = string.Format("It's a draw!{0}", Environment.NewLine);
+                }
+                
+                Assert.Equal(expected, sw.ToString());
+            }
+        }
+        
         
     }
 }

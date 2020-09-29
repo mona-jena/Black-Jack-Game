@@ -125,10 +125,40 @@ namespace ProgramTest
             Deck deck = new Deck(new ConsoleActions());
             var initialDeck = deck.completeDeck.Count;
             
-            game.PlayersTurn(usersHand, deck,initialScore);
+            game.PlayersTurn(usersHand, deck, initialScore);
             var deckAfterDrawCard = deck.completeDeck.Count;
 
             Assert.False(initialDeck.Equals(deckAfterDrawCard));
+        }
+        
+        
+        [Fact]
+        public void TestIfPlayersTurnReturnsTopCardFromDrawCardMethod()
+        {
+            var usersHand = new List<Card>();
+
+            usersHand.AddRange(new[]
+            {
+                new Card() {Suite = "Diamonds", Value = "8"},
+                new Card() {Suite = "Hearts", Value = "6"}
+            });
+            int initialScore = 14;
+            
+            var consoleActionsMock = new Mock<IConsole>();
+            consoleActionsMock.SetupSequence(s => s.ReadLine())
+                .Returns("1")
+                .Returns("0");
+
+            Game game = new Game(consoleActionsMock.Object, new Deck(new ConsoleActions()));
+
+            Deck deck = new Deck(new ConsoleActions());
+            deck.Shuffle();
+            var initialTopCard = deck.completeDeck[0];
+            
+            game.PlayersTurn(usersHand, deck, initialScore);
+            var topCardAfterDrawCard = deck.completeDeck[0];
+
+            Assert.False(initialTopCard.Equals(topCardAfterDrawCard));
         }
         
         //check if it removed index 0

@@ -189,10 +189,10 @@ namespace Black_Jack_Game
             }
             else if (score > 21)
             {
-                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
+                Console.WriteLine("You are at currently at Bust with the hand: \n");
                 foreach (var i in gamersHand)
                 {
-                    _newConsole.WriteLine(i.ToString());
+                    Console.WriteLine(i.ToString());
                 }
 
                 var result = ifPlayersTurn ? "\nDealer Wins!" : "\nPlayer Wins!";

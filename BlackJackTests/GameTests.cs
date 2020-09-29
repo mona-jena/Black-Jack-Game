@@ -255,5 +255,56 @@ namespace ProgramTest
         }
         
         
+        [Fact]
+        public void TestIfWinOrLossDuringGamePrintsCorrectlyWhenItsDealersTurnAndScoreIs21()
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                
+                Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+                Deck deck = new Deck(new ConsoleActions());
+                int score = 21;
+                var gamersHand = new List<Card>();
+                gamersHand.AddRange(new[]
+                {
+                    new Card() {Suite = "Diamonds", Value = "8"},
+                    new Card() {Suite = "Hearts", Value = "Ace"}
+                });
+                
+                game.WinOrLossDuringGame(score, gamersHand);
+
+                string expected = string.Format("Black Jack! Dealer wins!{0}", Environment.NewLine);
+                Assert.Equal(expected, sw.ToString());
+            }
+        }
+        
+        // Can't test print statement if ifPlayersTurn = true as cannot change this local class variable 
+        // Can't test if score > 21 as the other print statements get in the way
+        
+        /*[Fact]
+        public void TestIfWinOrLossDuringGamePrintsCorrectlyWhenItsDealersTurnAndScoreIsOver21()
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                
+                Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+                Deck deck = new Deck(new ConsoleActions());
+                int score = 30;
+                var gamersHand = new List<Card>();
+                gamersHand.AddRange(new[]
+                {
+                    new Card() {Suite = "Diamonds", Value = "8"},
+                    new Card() {Suite = "Hearts", Value = "Ace"}
+                });
+                
+                game.WinOrLossDuringGame(score, gamersHand);
+
+                string expected = string.Format("Player Wins!{0}", Environment.NewLine);
+                Assert.Equal(expected, sw.ToString());
+            }
+        }*/
+        
     }
 }

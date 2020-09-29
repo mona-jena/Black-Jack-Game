@@ -279,8 +279,12 @@ namespace ProgramTest
             }
         }
         
-        // CAN'T TEST print statement if ifPlayersTurn = true as cannot change this local class variable 
-        // CAN'T TEST if score > 21 as the other print statements get in the way
+        
+        /// <summary>
+        /// CAN'T TEST print statement if ifPlayersTurn = true as cannot change this local class variable
+        /// CAN'T TEST if score > 21 as the other print statements get in the way
+        /// </summary>
+
         
         /*[Fact]
         public void TestIfWinOrLossDuringGamePrintsCorrectlyWhenItsDealersTurnAndScoreIsOver21()

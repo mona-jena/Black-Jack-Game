@@ -32,8 +32,6 @@ namespace Black_Jack_Game
         public void Shuffle()
         { 
             completeDeck = completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
-            // _newConsole.WriteLine("\nshuffled deck:");
-            // _completeDeck.ForEach(_newConsole.WriteLine);
         }
 
         public Card DrawCard()

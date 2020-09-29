@@ -6,6 +6,7 @@ namespace Black_Jack_Game
 
     public class Game
     {
+        private IDeck _newDeck;
         IConsole _newConsole;
         private bool ifPlayersTurn = false;
         private static bool ifGameOver = false;
@@ -16,7 +17,7 @@ namespace Black_Jack_Game
             
             deck.Shuffle();
 
-            Game game = new Game(new ConsoleActions());
+            Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
             
             List<Card> playersHand = game.DrawFirstTwoCards(deck);
             int playersScore = game.CalculateScore(playersHand);
@@ -42,9 +43,11 @@ namespace Black_Jack_Game
         }
         
         
-        public Game(IConsole console)
+        public Game(IConsole console, IDeck deck)
         {
             _newConsole = console;
+            _newDeck = deck;
+
         }
         
         
@@ -72,7 +75,7 @@ namespace Black_Jack_Game
             WinOrLossDuringGame(score, playersHand);
             
             string playersOption = "1";
-            while (playersOption == "1" && score < 21 && ifGameOver == false)
+            while (playersOption == "1" && score < 21)
             {
                 _newConsole.WriteLine("\nHit or stay? (Hit = 1, Stay = 0)");
                 playersOption = _newConsole.ReadLine();

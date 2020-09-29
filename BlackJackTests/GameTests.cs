@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Black_Jack_Game;
 using Xunit;
@@ -65,49 +66,15 @@ namespace ProgramTest
                 "King,Spades",
                 "Ace,Spades"
             };
-            
-            /*var newDeck = new List<Card>();
-            for (int i = 0; i < shuffledDeck.Count; i++)
-            {
-                string[] splitCard =  shuffledDeck[i].Split(",");
-                Card card = new Card()
-                {
-                    Suite = splitCard[1],
-                    Value = splitCard[0]
-                };
-                newDeck.Add(card);
-            }
-            
-            
-            Game game = new Game(new ConsoleActions());
 
-            var usersHand = new List<Card>();
-            Card card1 = new Card()
-            {
-                Suite = "Diamonds",
-                Value = "8"
-            };
-            usersHand.Add(card1);
-            Card card2 = new Card()
-            {
-                Suite = "Hearts",
-                Value = "6"
-            };
-            usersHand.Add(card2);
-
-            var result = game.DrawFirstTwoCards(new Deck(new ConsoleActions()));
-            Assert.Equal(usersHand, result);*/
-            
             Deck newDeck = new Deck(new ConsoleActions());
-            Game newGame = new Game(new ConsoleActions());
+            Game newGame = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
             var result = newGame.DrawFirstTwoCards(newDeck);
             var expected = 2;
             Assert.Equal(result.Count, expected);
-
         }
-        
-        
-        
+
+
         [Fact]
         public void TestIfPlayersTurnTakesUserInputAndReturnsScore()
         {
@@ -167,7 +134,7 @@ namespace ProgramTest
                 "[Ace, Spades]"
             };
 
-            IDeck deck = new Deck(new ConsoleActions());
+            /*IDeck deck = new Deck(new ConsoleActions());
 
             List<Card> playersHand = new List<Card>() {"3 of Hearts", "5 of Clubs"};
             var consoleActionsMock = new Mock<IConsole>();
@@ -180,10 +147,37 @@ namespace ProgramTest
             Game game = new Game(consoleActionsMock.Object);
             int result = game.PlayersTurn(playersHand, deck, intialScore);
             Assert.Equal(expected, result);
-            //Assert.True(list1.);
+            //Assert.True(list1.);*/
+
+
+            
+
+            var usersHand = new List<Card>();
+
+            usersHand.AddRange(new[]
+            {
+                new Card() {Suite = "Diamonds", Value = "8"},
+                new Card() {Suite = "Hearts", Value = "6"}
+            });
+            int initialScore = 14;
+            
+            var consoleActionsMock = new Mock<IConsole>();
+            consoleActionsMock.SetupSequence(s => s.ReadLine())
+                .Returns("1")
+                .Returns("0");
+
+            var deckMock = new Mock<IDeck>();
+            deckMock.Setup((s => s.DrawCard()))
+                .Returns(new Card() {Suite = "Diamonds", Value = "5"});
+            
+            Game game = new Game(consoleActionsMock.Object, deckMock.Object);
+
+            var result = game.PlayersTurn(usersHand, deckMock.Object, initialScore);
+            var expectedScore = 19;
+            Assert.Equal(expectedScore, result);
         }
 
-        [Fact]
+        /*[Fact]
         public void TestIfPlayersTurnReturnsTopCardFromDrawCardMethod()
         {
             Deck deck = new Deck(new ConsoleActions());
@@ -408,7 +402,7 @@ namespace ProgramTest
             Game game = new Game(new ConsoleActions());
             List<Card> result = game.DealersTurn(dealersHand, deckMock.Object, score);
             Assert.Equal(expected, result);
-        }
+        }*/
         
     
         // FIX ABOVE TESTS

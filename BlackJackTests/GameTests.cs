@@ -104,7 +104,7 @@ namespace ProgramTest
         }
 
         [Fact]
-        public void TestIfPlayersTurnReturnsTopCardFromDrawCardMethod()
+        public void TestIfPlayersTurnRemovesTopCardFromDrawCardMethod()
         {
             var usersHand = new List<Card>();
 

@@ -47,7 +47,6 @@ namespace Black_Jack_Game
         {
             _newConsole = console;
             _newDeck = deck;
-
         }
         
         

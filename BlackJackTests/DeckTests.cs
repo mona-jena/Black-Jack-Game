@@ -90,62 +90,6 @@ namespace ProgramTest
         [Fact]
         public void TestIfShuffleRearrangesDeckOfCards()
         {
-            /*var completeDeck = new List<string>()
-            {
-                "2, Clubs",
-                "3, Clubs",
-                "4, Clubs",
-                "5, Clubs",
-                "6, Clubs",
-                "7, Clubs",
-                "8, Clubs",
-                "9, Clubs",
-                "10, Clubs",
-                "Jack, Clubs",
-                "Queen, Clubs",
-                "Kind, Clubs",
-                "Ace, Clubs",
-                "2, Diamonds",
-                "3, Diamonds",
-                "4, Diamonds",
-                "5, Diamonds",
-                "6, Diamonds",
-                "7, Diamonds",
-                "8, Diamonds",
-                "9, Diamonds",
-                "10, Diamonds",
-                "Jack, Diamonds",
-                "Queen, Diamonds",
-                "Kind, Diamonds",
-                "Ace, Diamonds",
-                "2, Hearts",
-                "3, Hearts",
-                "4, Hearts",
-                "5, Hearts",
-                "6, Hearts",
-                "7, Hearts",
-                "8, Hearts",
-                "9, Hearts",
-                "10, Hearts",
-                "Jack, Hearts",
-                "Queen, Hearts",
-                "Kind, Hearts",
-                "Ace, Hearts",
-                "2, Spades",
-                "3, Spades",
-                "4, Spades",
-                "5, Spades",
-                "6, Spades",
-                "7, Spades",
-                "8, Spades",
-                "9, Spades",
-                "10, Spades",
-                "Jack, Spades",
-                "Queen, Spades",
-                "Kind, Spades",
-                "Ace, Spades"
-            };*/
-  
             Deck newDeck = new Deck(new ConsoleActions());
             List<Card> unshuffledDeck = newDeck.completeDeck;
             newDeck.Shuffle();
@@ -157,73 +101,6 @@ namespace ProgramTest
         [Fact]
         public void TestIfDrawCardRemovesTopCard()
         {
-            /*var completeDeck = new List<string>()
-            {
-                "5, Diamonds",
-                "10, Clubs",
-                "3, Clubs",
-                "4, Clubs",
-                "5, Clubs",
-                "6, Clubs",
-                "7, Clubs",
-                "8, Clubs",
-                "9, Clubs",
-                "Kind, Diamonds",
-                "Jack, Clubs",
-                "Queen, Clubs",
-                "Kind, Clubs",
-                "Ace, Clubs",
-                "2, Diamonds",
-                "3, Diamonds",
-                "4, Diamonds",
-                "6, Diamonds",
-                "7, Diamonds",
-                "8, Diamonds",
-                "9, Diamonds",
-                "10, Diamonds",
-                "Jack, Diamonds",
-                "Queen, Diamonds",
-                "8, Hearts",
-                "Ace, Diamonds",
-                "2, Hearts",
-                "3, Hearts",
-                "4, Hearts",
-                "5, Hearts",
-                "6, Hearts",
-                "7, Hearts",
-                "5, Spades",
-                "9, Hearts",
-                "10, Hearts",
-                "Jack, Hearts",
-                "2, Clubs",
-                "Queen, Hearts",
-                "Kind, Hearts",
-                "Ace, Hearts",
-                "2, Spades",
-                "3, Spades",
-                "4, Spades",
-                "Jack, Spades",
-                "6, Spades",
-                "7, Spades",
-                "8, Spades",
-                "9, Spades",
-                "10, Spades",
-                "Queen, Spades",
-                "Kind, Spades",
-                "Ace, Spades"
-            }; 
-            var expected = "5, Diamonds";
-            Deck newDeck = new Deck(new ConsoleActions());
-            var result = newDeck.DrawCard();
-            Assert.Equal(expected, result);
-            
-            //HOW TO TEST A METHOD WHICH TAKES NO PARAM???*/
-            
-            // int expected = 1;
-            // Deck newDeck = new Deck(new ConsoleActions()); 
-            // int result = newDeck.DrawCard().Count();
-            // Assert.Equal(expected, result);
-            
             Deck deck = new Deck(new ConsoleActions());
             int expected = 51;
             deck.DrawCard();

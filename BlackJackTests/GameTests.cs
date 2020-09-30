@@ -1,5 +1,6 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using Black_Jack_Game;
 using Xunit;
 using Moq;
@@ -9,140 +10,27 @@ namespace ProgramTest
     public class GameTests
     {
         [Fact]
-        public void TestIfPlayersTurnTakesUserInputAndDrawsCard()
+        public void TestIfDrawFirstTwoCardsReturnsTwoCards()
         {
-            Deck deck = new Deck(new ConsoleActions());
-
-            List<string> shuffledDeck = new List<string>()
-            {
-                "5 of Diamonds",
-                "10 of Clubs",
-                "3 of Clubs",
-                "4 of Clubs",
-                "5 of Clubs",
-                "6 of Clubs",
-                "7 of Clubs",
-                "8 of Clubs",
-                "9 of Clubs",
-                "Kind of Diamonds",
-                "Jack of Clubs",
-                "Queen of Clubs",
-                "Kind of Clubs",
-                "Ace of Clubs",
-                "2 of Diamonds",
-                "3 of Diamonds",
-                "4 of Diamonds",
-                "6 of Diamonds",
-                "7 of Diamonds",
-                "8 of Diamonds",
-                "9 of Diamonds",
-                "10 of Diamonds",
-                "Jack of Diamonds",
-                "Queen of Diamonds",
-                "8 of Hearts",
-                "Ace of Diamonds",
-                "2 of Hearts",
-                "3 of Hearts",
-                "4 of Hearts",
-                "5 of Hearts",
-                "6 of Hearts",
-                "7 of Hearts",
-                "5 of Spades",
-                "9 of Hearts",
-                "10 of Hearts",
-                "Jack of Hearts",
-                "2 of Clubs",
-                "Queen of Hearts",
-                "Kind of Hearts",
-                "Ace of Hearts",
-                "2 of Spades",
-                "3 of Spades",
-                "4 of Spades",
-                "Jack of Spades",
-                "6 of Spades",
-                "7 of Spades",
-                "8 of Spades",
-                "9 of Spades",
-                "10 of Spades",
-                "Queen of Spades",
-                "Kind of Spades",
-                "Ace of Spades"
-            };
-
-            List<string> playersHand = new List<string>() {"3 of Hearts", "5 of Clubs"};
-            var consoleActionsMock = new Mock<IConsole>();
-            consoleActionsMock.SetupSequence(s => s.ReadLine())
-                .Returns("1")
-                .Returns("0");
-
-            int expected = 3;
-            Game game = new Game(consoleActionsMock.Object);
-            int result = game.PlayersTurn(playersHand, deck).Count;
-            Assert.Equal(expected, result);
+            Deck newDeck = new Deck(new ConsoleActions());
+            Game newGame = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+            var result = newGame.DrawFirstTwoCards(newDeck);
+            var expected = 2;
+            Assert.Equal(result.Count, expected);
         }
 
+
         [Fact]
-        public void TestIfPlayersTurnReturnsTopCardFromDrawCardMethod()
+        public void TestIfPlayersTurnTakesUserInputAndReturnsScore()
         {
-            Deck deck = new Deck(new ConsoleActions());
-
-            List<string> shuffledDeck = new List<string>()
+            var usersHand = new List<Card>();
+            usersHand.AddRange(new[]
             {
-                "5 of Diamonds",
-                "10 of Clubs",
-                "3 of Clubs",
-                "4 of Clubs",
-                "5 of Clubs",
-                "6 of Clubs",
-                "7 of Clubs",
-                "8 of Clubs",
-                "9 of Clubs",
-                "Kind of Diamonds",
-                "Jack of Clubs",
-                "Queen of Clubs",
-                "Kind of Clubs",
-                "Ace of Clubs",
-                "2 of Diamonds",
-                "3 of Diamonds",
-                "4 of Diamonds",
-                "6 of Diamonds",
-                "7 of Diamonds",
-                "8 of Diamonds",
-                "9 of Diamonds",
-                "10 of Diamonds",
-                "Jack of Diamonds",
-                "Queen of Diamonds",
-                "8 of Hearts",
-                "Ace of Diamonds",
-                "2 of Hearts",
-                "3 of Hearts",
-                "4 of Hearts",
-                "5 of Hearts",
-                "6 of Hearts",
-                "7 of Hearts",
-                "5 of Spades",
-                "9 of Hearts",
-                "10 of Hearts",
-                "Jack of Hearts",
-                "2 of Clubs",
-                "Queen of Hearts",
-                "Kind of Hearts",
-                "Ace of Hearts",
-                "2 of Spades",
-                "3 of Spades",
-                "4 of Spades",
-                "Jack of Spades",
-                "6 of Spades",
-                "7 of Spades",
-                "8 of Spades",
-                "9 of Spades",
-                "10 of Spades",
-                "Queen of Spades",
-                "Kind of Spades",
-                "Ace of Spades"
-            };
-
-            List<string> playersHand = new List<string>() {"3 of Hearts", "5 of Clubs"};
+                new Card() {Suite = "Diamonds", Value = "8"},
+                new Card() {Suite = "Hearts", Value = "6"}
+            });
+            int initialScore = 14;
+            
             var consoleActionsMock = new Mock<IConsole>();
             consoleActionsMock.SetupSequence(s => s.ReadLine())
                 .Returns("1")
@@ -150,70 +38,93 @@ namespace ProgramTest
 
             var deckMock = new Mock<IDeck>();
             deckMock.Setup((s => s.DrawCard()))
-                .Returns("5 of Diamonds");
+                .Returns(new Card() {Suite = "Diamonds", Value = "5"});
+            
+            Game game = new Game(consoleActionsMock.Object, deckMock.Object);
+            var result = game.PlayersTurn(usersHand, deckMock.Object, initialScore);
+            var expectedScore = 19;
+            Assert.Equal(expectedScore, result);
+        }
+        
+        
+        [Fact]
+        public void TestIfPlayersTurnRemovesTopCardFromDrawCardMethod()
+        {
+            var usersHand = new List<Card>();
+            usersHand.AddRange(new[]
+            {
+                new Card() {Suite = "Diamonds", Value = "8"},
+                new Card() {Suite = "Hearts", Value = "6"}
+            });
+            int initialScore = 14;
+            
+            var consoleActionsMock = new Mock<IConsole>();
+            consoleActionsMock.SetupSequence(s => s.ReadLine())
+                .Returns("1")
+                .Returns("0");
 
-            List<string> expected = new List<string>() {"3 of Hearts", "5 of Clubs", "5 of Diamonds"};
-            Game game = new Game(consoleActionsMock.Object);
-            List<string> result = game.PlayersTurn(playersHand, deckMock.Object);
-            Assert.Equal(expected, result);
+            Game game = new Game(consoleActionsMock.Object, new Deck(new ConsoleActions()));
+            Deck deck = new Deck(new ConsoleActions());
+            var initialDeck = deck.completeDeck.Count;
+            game.PlayersTurn(usersHand, deck, initialScore);
+            var deckAfterDrawCard = deck.completeDeck.Count;
+
+            Assert.False(initialDeck.Equals(deckAfterDrawCard));
         }
         
-        [Theory]
-        [InlineData("3 of Hearts", "5 of Clubs", "5 of Diamonds", 13)]
-        [InlineData("Ace of Hearts", "5 of Clubs", "Queen of Diamonds", 16)]
-        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHand(string card1, string card2, string card3, int expected)
+        
+        //to check if it removed correct card from index 0
+        [Fact]
+        public void TestIfPlayersTurnReturnsTopCardFromDrawCardMethod()
         {
-            List<string> playersHand = new List<string>();
-            playersHand.Add(card1);
-            playersHand.Add(card2);
-            playersHand.Add(card3);
+            var usersHand = new List<Card>();
+            usersHand.AddRange(new[]
+            {
+                new Card() {Suite = "Diamonds", Value = "8"},
+                new Card() {Suite = "Hearts", Value = "6"}
+            });
+            int initialScore = 14;
             
-            Game game = new Game(new ConsoleActions());
-            int result = game.CalculateScore(playersHand);
-            Assert.Equal(expected, result);
+            var consoleActionsMock = new Mock<IConsole>();
+            consoleActionsMock.SetupSequence(s => s.ReadLine())
+                .Returns("1")
+                .Returns("0");
+
+            Game game = new Game(consoleActionsMock.Object, new Deck(new ConsoleActions()));
+            Deck deck = new Deck(new ConsoleActions());
+            deck.Shuffle();
+            var initialTopCard = deck.completeDeck[0];
+            game.PlayersTurn(usersHand, deck, initialScore);
+            var topCardAfterDrawCard = deck.completeDeck[0];
+
+            Assert.False(initialTopCard.Equals(topCardAfterDrawCard));
         }
         
         
-        [Theory]
-        [InlineData("2 of Hearts", "5 of Clubs", "4 of Diamonds", "10 of Spades", 21)]
-        [InlineData("6 of Diamonds", "Ace of Hearts", "5 of Clubs", "7 of Diamonds", 19)]
-        [InlineData("6 of Diamonds", "1 of Hearts", "6 of Clubs", "7 of Diamonds", 20)]
-        [InlineData("2 of Diamonds", "Ace of Hearts", "King of Clubs", "7 of Diamonds", 20)]
-        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWithFourCards(string card1, string card2, string card3, string card4, int expected)
+        // [Theory]
+        // [InlineData("3 of Hearts", "5 of Clubs", "5 of Diamonds", 13)]
+        // [InlineData("Ace of Hearts", "5 of Clubs", "Queen of Diamonds", 16)]
+        // public void TestIfCalculateScoreReturnsTotalSumOfPlayersHand(string card1, string card2, string card3, int expected)
+        
+        [Fact]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWith3Cards()
         {
-            List<string> playersHand = new List<string>();
-            playersHand.Add(card1);
-            playersHand.Add(card2);
-            playersHand.Add(card3);
-            playersHand.Add(card4);
-            
-            Game game = new Game(new ConsoleActions());
-            int result = game.CalculateScore(playersHand);
+            var usersHand = new List<Card>();
+            usersHand.AddRange(new[]
+            {
+                new Card() {Suite = "Diamonds", Value = "Ace"},
+                new Card() {Suite = "Hearts", Value = "Ace"},
+                new Card() {Suite = "Spades", Value = "Ace"},
+                
+            });
+
+            Game game = new Game(new ConsoleActions(),new Deck(new ConsoleActions()));
+            int result = game.CalculateScore(usersHand);
+            int expected = 13;
             Assert.Equal(expected, result);
         }
         
-        
-        [Theory]
-        [InlineData("2 of Hearts", "2 of Clubs", "4 of Diamonds", "10 of Spades", "Ace of Diamonds", 19)]
-        [InlineData("6 of Diamonds", "Ace of Hearts", "5 of Clubs", "7 of Diamonds", "8 of Clubs", 27)]
-        [InlineData("6 of Diamonds", "1 of Hearts", "6 of Clubs", "7 of Diamonds", "Ace of Diamonds", 21)]
-        [InlineData("2 of Diamonds", "Ace of Hearts", "King of Clubs", "7 of Diamonds", "Ace of Diamonds", 21)]
-        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWithFiveCards(string card1, string card2, string card3, string card4, string card5, int expected)
-        {
-            List<string> playersHand = new List<string>();
-            playersHand.Add(card1);
-            playersHand.Add(card2);
-            playersHand.Add(card3);
-            playersHand.Add(card4);
-            playersHand.Add(card5);
-            
-            Game game = new Game(new ConsoleActions());
-            int result = game.CalculateScore(playersHand);
-            Assert.Equal(expected, result);
-        }
-        
-        
-        [Theory]
+        /*[Theory]
         [InlineData("2 of Hearts", "2 of Clubs", 4)]
         [InlineData("6 of Diamonds", "Ace of Hearts", 17)]
         [InlineData("6 of Diamonds", "1 of Hearts", 7)]
@@ -229,80 +140,210 @@ namespace ProgramTest
             Game game = new Game(new ConsoleActions());
             int result = game.CalculateScore(playersHand);
             Assert.Equal(expected, result);
-        }
-
+        }*/
         
         [Fact]
-        public void TestIfDealersTurnStopsDrawingCardsWhenScoreReachesSeventeen()
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWith2Cards()
         {
-            Deck deck = new Deck(new ConsoleActions()) { };
-
-            List<string> shuffledDeck = new List<string>()
+            var usersHand = new List<Card>();
+            usersHand.AddRange(new[]
             {
-                "5 of Diamonds",
-                "10 of Clubs",
-                "3 of Clubs",
-                "4 of Clubs",
-                "5 of Clubs",
-                "6 of Clubs",
-                "7 of Clubs",
-                "8 of Clubs",
-                "9 of Clubs",
-                "Kind of Diamonds",
-                "Jack of Clubs",
-                "Queen of Clubs",
-                "Kind of Clubs",
-                "Ace of Clubs",
-                "2 of Diamonds",
-                "3 of Diamonds",
-                "4 of Diamonds",
-                "6 of Diamonds",
-                "7 of Diamonds",
-                "8 of Diamonds",
-                "9 of Diamonds",
-                "10 of Diamonds",
-                "Jack of Diamonds",
-                "Queen of Diamonds",
-                "8 of Hearts",
-                "Ace of Diamonds",
-                "2 of Hearts",
-                "3 of Hearts",
-                "4 of Hearts",
-                "5 of Hearts",
-                "6 of Hearts",
-                "7 of Hearts",
-                "5 of Spades",
-                "9 of Hearts",
-                "10 of Hearts",
-                "Jack of Hearts",
-                "2 of Clubs",
-                "Queen of Hearts",
-                "Kind of Hearts",
-                "Ace of Hearts",
-                "2 of Spades",
-                "3 of Spades",
-                "4 of Spades",
-                "Jack of Spades",
-                "6 of Spades",
-                "7 of Spades",
-                "8 of Spades",
-                "9 of Spades",
-                "10 of Spades",
-                "Queen of Spades",
-                "Kind of Spades",
-                "Ace of Spades"
-            };
+                new Card() {Suite = "Diamonds", Value = "Ace"},
+                new Card() {Suite = "Hearts", Value = "Ace"}
+            });
 
-            List<string> dealersHand = new List<string>() {"8 of Spades", "4 of Diamonds"};
-            
-            var deckMock = new Mock<IDeck>();
-            deckMock.Setup((s => s.DrawCard()))
-                .Returns("Queen of Diamonds");
-            
-            List<string> expected = new List<string>() {"8 of Spades", "4 of Diamonds", "Queen of Diamonds"};
-            Game game = new Game(new ConsoleActions());
-            List<string> result = game.DealersTurn(dealersHand, deckMock.Object);
+            Game game = new Game(new ConsoleActions(),new Deck(new ConsoleActions()));
+            int result = game.CalculateScore(usersHand);
+            int expected = 12;
             Assert.Equal(expected, result);
         }
+        
+        /*
+        [Theory]
+        [InlineData("2 of Hearts", "5 of Clubs", "4 of Diamonds", "10 of Spades", 21)]
+        [InlineData("6 of Diamonds", "Ace of Hearts", "5 of Clubs", "7 of Diamonds", 19)]
+        [InlineData("6 of Diamonds", "1 of Hearts", "6 of Clubs", "7 of Diamonds", 20)]
+        [InlineData("2 of Diamonds", "Ace of Hearts", "King of Clubs", "7 of Diamonds", 20)]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWithFourCards(string card1, string card2, string card3, string card4, int expected)
+        {
+            List<Card> playersHand = new List<Card>();
+            playersHand.Add(card1);
+            playersHand.Add(card2);
+            playersHand.Add(card3);
+            playersHand.Add(card4);
+            
+            Game game = new Game(new ConsoleActions());
+            int result = game.CalculateScore(playersHand);
+            Assert.Equal(expected, result);
+        } */
+        
+        [Fact]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWith4Cards()
+        {
+            var usersHand = new List<Card>();
+            usersHand.AddRange(new[]
+            {
+                new Card() {Suite = "Diamonds", Value = "Ace"},
+                new Card() {Suite = "Hearts", Value = "5"},
+                new Card() {Suite = "Spades", Value = "2"},
+                new Card() {Suite = "Diamonds", Value = "3"}
+            });
+
+            Game game = new Game(new ConsoleActions(),new Deck(new ConsoleActions()));
+            int result = game.CalculateScore(usersHand);
+            int expected = 21;
+            Assert.Equal(expected, result);
+        }
+        
+        
+        /*
+        [Theory]
+        [InlineData("2 of Hearts", "2 of Clubs", "4 of Diamonds", "10 of Spades", "Ace of Diamonds", 19)]
+        [InlineData("6 of Diamonds", "Ace of Hearts", "5 of Clubs", "7 of Diamonds", "8 of Clubs", 27)]
+        [InlineData("6 of Diamonds", "1 of Hearts", "6 of Clubs", "7 of Diamonds", "Ace of Diamonds", 21)]
+        [InlineData("2 of Diamonds", "Ace of Hearts", "King of Clubs", "7 of Diamonds", "Ace of Diamonds", 19)]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWithFiveCards(string card1, string card2, string card3, string card4, string card5, int expected)
+        {
+            List<string> playersHand = new List<string>();
+            playersHand.Add(card1);
+            playersHand.Add(card2);
+            playersHand.Add(card3);
+            playersHand.Add(card4);
+            playersHand.Add(card5);
+            
+            Game game = new Game(new ConsoleActions());
+            int result = game.CalculateScore(playersHand);
+            Assert.Equal(expected, result);
+        }*/
+        
+        [Fact]
+        public void TestIfCalculateScoreReturnsTotalSumOfPlayersHandWith5Cards()
+        {
+            var usersHand = new List<Card>();
+            usersHand.AddRange(new[]
+            {
+                new Card() {Suite = "Diamonds", Value = "2"},
+                new Card() {Suite = "Hearts", Value = "2"},
+                new Card() {Suite = "Spades", Value = "4"},
+                new Card() {Suite = "Spades", Value = "10"},
+                new Card() {Suite = "Spades", Value = "Ace"},
+            });
+
+            Game game = new Game(new ConsoleActions(),new Deck(new ConsoleActions()));
+            int result = game.CalculateScore(usersHand);
+            int expected = 19;
+            Assert.Equal(expected, result);
+        }
+        
+        
+        [Fact]
+        public void TestIfDealersTurnStopsDrawingCardsWhenScoreReaches17()
+        {
+            var dealersHand = new List<Card>();
+            dealersHand.AddRange(new[]
+            {
+                new Card() {Suite = "Diamonds", Value = "8"},
+                new Card() {Suite = "Hearts", Value = "Ace"}
+            });
+            int initialScore = 19;
+
+            Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+            Deck deck = new Deck(new ConsoleActions());
+            var result = game.DealersTurn(dealersHand, new Deck(new ConsoleActions()), initialScore);
+            var expected = 19;
+            Assert.Equal(result, expected);
+        }
+        
+        
+        [Fact]
+        public void TestIfWinOrLossDuringGamePrintsCorrectlyWhenItsDealersTurnAndScoreIs21()
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                
+                Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+                Deck deck = new Deck(new ConsoleActions());
+                int score = 21;
+                var gamersHand = new List<Card>();
+                gamersHand.AddRange(new[]
+                {
+                    new Card() {Suite = "Diamonds", Value = "8"},
+                    new Card() {Suite = "Hearts", Value = "Ace"}
+                });
+                
+                game.WinOrLossDuringGame(score, gamersHand);
+
+                string expected = string.Format("Black Jack! Dealer wins!{0}", Environment.NewLine);
+                Assert.Equal(expected, sw.ToString());
+            }
+        }
+        
+        
+        /// <summary>
+        /// CAN'T TEST print statement if ifPlayersTurn = true as cannot change this local class variable
+        /// CAN'T TEST if score > 21 as the other print statements get in the way
+        /// </summary>
+
+        
+        /*[Fact]
+        public void TestIfWinOrLossDuringGamePrintsCorrectlyWhenItsDealersTurnAndScoreIsOver21()
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                
+                Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+                Deck deck = new Deck(new ConsoleActions());
+                int score = 30;
+                var gamersHand = new List<Card>();
+                gamersHand.AddRange(new[]
+                {
+                    new Card() {Suite = "Diamonds", Value = "8"},
+                    new Card() {Suite = "Hearts", Value = "Ace"}
+                });
+                
+                game.WinOrLossDuringGame(score, gamersHand);
+
+                string expected = string.Format("Player Wins!{0}", Environment.NewLine);
+                Assert.Equal(expected, sw.ToString());
+            }
+        }*/
+        
+        
+        [Theory]
+        [InlineData(15, 20)]
+        [InlineData(18, 16)]
+        [InlineData(18, 18)]
+        public void TestIfIsWinnerPrintsCorrectOutput(int playersScore, int dealersScore)
+        {
+            
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                
+                Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+                Deck deck = new Deck(new ConsoleActions());
+                game.IsWinner(playersScore, dealersScore);
+
+                string expected = "";
+                if (playersScore > dealersScore)
+                {
+                    expected = string.Format("Player Wins!{0}", Environment.NewLine);
+                } 
+                else if (playersScore < dealersScore)
+                {
+                    expected = string.Format("Dealer Wins!{0}", Environment.NewLine);
+                }
+                else
+                {
+                    expected = string.Format("It's a draw!{0}", Environment.NewLine);
+                }
+                
+                Assert.Equal(expected, sw.ToString());
+            }
+        }
+        
+        
     }
 }

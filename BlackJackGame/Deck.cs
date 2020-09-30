@@ -6,13 +6,10 @@ namespace Black_Jack_Game
 {
     public class Deck : IDeck
     {
-        IConsole _newConsole;
-        public List<Card> completeDeck { get; set; } = new List<Card>();
+        public List<Card> CompleteDeck { get; set; } = new List<Card>();
 
-        public Deck(IConsole console)
+        public Deck()
         {
-            _newConsole = console;
-
             foreach (var suite in Card.suites)
             {
                 foreach (var value in Card.values)
@@ -23,7 +20,7 @@ namespace Black_Jack_Game
                         Value = value
                     };
            
-                    completeDeck.Add(card);
+                    CompleteDeck.Add(card);
                 }
             }
         }
@@ -31,14 +28,14 @@ namespace Black_Jack_Game
       
         public void Shuffle()
         { 
-            completeDeck = completeDeck.OrderBy(x => Guid.NewGuid()).ToList();
+            CompleteDeck = CompleteDeck.OrderBy(x => Guid.NewGuid()).ToList();
         }
 
         public Card DrawCard()
         {
-            Card firstCard = completeDeck[0];
-            completeDeck.RemoveAt(0);
-            _newConsole.WriteLine("\ntopcard: " + firstCard + "\n");
+            Card firstCard = CompleteDeck[0];
+            CompleteDeck.RemoveAt(0);
+            Console.WriteLine("\ntopcard: " + firstCard + "\n");
             return firstCard;
         }
         

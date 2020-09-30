@@ -13,11 +13,11 @@ namespace Black_Jack_Game
         
         static void Main(string[] args)
         {
-            Deck deck = new Deck(new ConsoleActions());
+            Deck deck = new Deck();
             
             deck.Shuffle();
 
-            Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
+            Game game = new Game(new ConsoleActions(), new Deck());
             
             List<Card> playersHand = game.DrawFirstTwoCards(deck);
             int playersScore = game.CalculateScore(playersHand);
@@ -39,7 +39,6 @@ namespace Black_Jack_Game
             {
                 game.IsWinner(playersScore, dealersScore);
             }
-            
         }
         
         
@@ -70,7 +69,6 @@ namespace Black_Jack_Game
             }
             _newConsole.WriteLine("score: " + score + "\n");
             
-            //WinOrLossForPlayerDuringGame(score, playersHand);
             WinOrLossDuringGame(score, playersHand);
             
             string playersOption = "1";
@@ -93,8 +91,7 @@ namespace Black_Jack_Game
                     break;
                 }
             }
-
-            //WinOrLossForPlayerDuringGame(score, playersHand);
+            
             WinOrLossDuringGame(score, playersHand);
 
             return score;
@@ -158,7 +155,6 @@ namespace Black_Jack_Game
             }
             _newConsole.WriteLine("score: " + score + "\n");
             
-           // WinOrLossForDealerDuringGame(score, dealersHand);
             WinOrLossDuringGame(score, dealersHand);
             
             while (score < 17 && (ifGameOver == false))
@@ -172,7 +168,6 @@ namespace Black_Jack_Game
                 _newConsole.WriteLine("score: " + score + "\n");
             }
 
-            //WinOrLossForDealerDuringGame(score, dealersHand);
             WinOrLossDuringGame(score, dealersHand);
 
             return score;
@@ -189,10 +184,10 @@ namespace Black_Jack_Game
             }
             else if (score > 21)
             {
-                Console.WriteLine("You are at currently at Bust with the hand: \n");
+                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
                 foreach (var i in gamersHand)
                 {
-                    Console.WriteLine(i.ToString());
+                    _newConsole.WriteLine(i.ToString());
                 }
 
                 var result = ifPlayersTurn ? "\nDealer Wins!" : "\nPlayer Wins!";
@@ -200,48 +195,8 @@ namespace Black_Jack_Game
                 _newConsole.WriteLine(result);
             }
         }
-        
-        
-        /*public void WinOrLossForPlayerDuringGame(int score, List<Card> playersHand)
-        {
-            if (score == 21)
-            {
-                _newConsole.WriteLine("Black Jack! You beat the dealer!");
-                ifGameOver = true;
-            } 
-            else if (score > 21)
-            {
-                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
-                foreach (var i in playersHand)
-                {
-                    _newConsole.WriteLine(i.ToString());
-                }
-                _newConsole.WriteLine("\nDealer Wins!");
-                ifGameOver = true;
-            }
-        }
-        
-        
-        public void WinOrLossForDealerDuringGame(int score, List<Card> dealersHand)
-        {
-            if (score == 21)
-            {
-                _newConsole.WriteLine("Black Jack! Dealer wins!");
-                ifGameOver = true;
-            } 
-            else if (score > 21)
-            {
-                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
-                foreach (var i in dealersHand)
-                {
-                    _newConsole.WriteLine(i.ToString());
-                }
-                _newConsole.WriteLine("\nPlayer Wins!");
-                ifGameOver = true;
-            }
-        }*/
-        
-        
+
+
         public void IsWinner(int playersScore, int dealersScore)
         {
             if (playersScore > dealersScore)

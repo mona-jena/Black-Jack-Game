@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 namespace Black_Jack_Game
 {
@@ -7,7 +5,6 @@ namespace Black_Jack_Game
     {
         public Card DrawCard();
 
-        public void Shuffle();
     }
 
 }

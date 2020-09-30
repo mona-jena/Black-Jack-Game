@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Black_Jack_Game;
 using Xunit;
 
@@ -12,8 +11,8 @@ namespace ProgramTest
         public void TestIfCompleteDeckReturns52Cards()
         {
             int expected = 52;
-            Deck deck = new Deck(new ConsoleActions());
-            int result = deck.completeDeck.Count;
+            Deck deck = new Deck();
+            int result = deck.CompleteDeck.Count;
             Assert.Equal(expected, result);
         }
 
@@ -76,24 +75,23 @@ namespace ProgramTest
                 "Ace,Spades"
             };
 
-            var deckTest = new Deck(new ConsoleActions());
+            var deckTest = new Deck();
 
             for (int c = 0; c < 52; c++)
             { 
-                var actual = $"{deckTest.completeDeck[c].Value},{deckTest.completeDeck[c].Suite}";
+                var actual = $"{deckTest.CompleteDeck[c].Value},{deckTest.CompleteDeck[c].Suite}";
                 Assert.Equal(completeDeck[c], actual);
             }
-           
         }
         
 
         [Fact]
         public void TestIfShuffleRearrangesDeckOfCards()
         {
-            Deck newDeck = new Deck(new ConsoleActions());
-            List<Card> unshuffledDeck = newDeck.completeDeck;
+            Deck newDeck = new Deck();
+            List<Card> unshuffledDeck = newDeck.CompleteDeck;
             newDeck.Shuffle();
-            List<Card> shuffledDeck = newDeck.completeDeck;
+            List<Card> shuffledDeck = newDeck.CompleteDeck;
             
             Assert.False(unshuffledDeck.Equals(shuffledDeck));
         }
@@ -101,19 +99,19 @@ namespace ProgramTest
         [Fact]
         public void TestIfDrawCardRemovesTopCard()
         {
-            Deck deck = new Deck(new ConsoleActions());
+            Deck deck = new Deck();
             int expected = 51;
             deck.DrawCard();
-            int result = deck.completeDeck.Count;
+            int result = deck.CompleteDeck.Count;
             Assert.Equal(expected, result);
         }
 
         [Fact]
         public void TestIfDrawCardRemovesTopCardAndReturnsCardThatDoesNotExistInCompleteDeck()
         {
-            Deck deck = new Deck(new ConsoleActions());
+            Deck deck = new Deck();
             var drawnCard = deck.DrawCard();
-            Assert.False(deck.completeDeck[0].Equals(drawnCard));
+            Assert.False(deck.CompleteDeck[0].Equals(drawnCard));
         }
     }
 }

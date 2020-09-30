@@ -7,7 +7,6 @@ namespace Black_Jack_Game
     {
         public Card DrawCard();
 
-        public void Shuffle();
     }
 
 }

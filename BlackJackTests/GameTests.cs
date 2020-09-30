@@ -115,7 +115,6 @@ namespace ProgramTest
                 new Card() {Suite = "Diamonds", Value = "Ace"},
                 new Card() {Suite = "Hearts", Value = "Ace"},
                 new Card() {Suite = "Spades", Value = "Ace"},
-                
             });
 
             Game game = new Game(new ConsoleActions(),new Deck(new ConsoleActions()));
@@ -286,29 +285,25 @@ namespace ProgramTest
         /// </summary>
 
         
-        /*[Fact]
+        [Fact]
         public void TestIfWinOrLossDuringGamePrintsCorrectlyWhenItsDealersTurnAndScoreIsOver21()
         {
-            using (StringWriter sw = new StringWriter())
+            var consoleActionsMock = new Mock<IConsole>();
+                
+            Game game = new Game(consoleActionsMock.Object, new Deck(new ConsoleActions()));
+            Deck deck = new Deck(new ConsoleActions());
+            int score = 30; 
+            var gamersHand = new List<Card>();
+            gamersHand.AddRange(new[]
             {
-                Console.SetOut(sw);
+                new Card() {Suite = "Diamonds", Value = "8"},
+                new Card() {Suite = "Hearts", Value = "Ace"}
+            });
                 
-                Game game = new Game(new ConsoleActions(), new Deck(new ConsoleActions()));
-                Deck deck = new Deck(new ConsoleActions());
-                int score = 30;
-                var gamersHand = new List<Card>();
-                gamersHand.AddRange(new[]
-                {
-                    new Card() {Suite = "Diamonds", Value = "8"},
-                    new Card() {Suite = "Hearts", Value = "Ace"}
-                });
-                
-                game.WinOrLossDuringGame(score, gamersHand);
-
-                string expected = string.Format("Player Wins!{0}", Environment.NewLine);
-                Assert.Equal(expected, sw.ToString());
-            }
-        }*/
+            game.WinOrLossDuringGame(score, gamersHand);
+            consoleActionsMock.Verify(consoleMock => consoleMock.WriteLine("\nPlayer Wins!"));
+            
+        }
         
         
         [Theory]
@@ -317,7 +312,6 @@ namespace ProgramTest
         [InlineData(18, 18)]
         public void TestIfIsWinnerPrintsCorrectOutput(int playersScore, int dealersScore)
         {
-            
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
@@ -343,7 +337,6 @@ namespace ProgramTest
                 Assert.Equal(expected, sw.ToString());
             }
         }
-        
         
     }
 }

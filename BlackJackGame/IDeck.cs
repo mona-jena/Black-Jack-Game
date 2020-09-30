@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 namespace Black_Jack_Game
 {

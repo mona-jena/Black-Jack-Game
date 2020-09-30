@@ -39,7 +39,6 @@ namespace Black_Jack_Game
             {
                 game.IsWinner(playersScore, dealersScore);
             }
-            
         }
         
         
@@ -189,10 +188,10 @@ namespace Black_Jack_Game
             }
             else if (score > 21)
             {
-                Console.WriteLine("You are at currently at Bust with the hand: \n");
+                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
                 foreach (var i in gamersHand)
                 {
-                    Console.WriteLine(i.ToString());
+                    _newConsole.WriteLine(i.ToString());
                 }
 
                 var result = ifPlayersTurn ? "\nDealer Wins!" : "\nPlayer Wins!";
@@ -200,48 +199,8 @@ namespace Black_Jack_Game
                 _newConsole.WriteLine(result);
             }
         }
-        
-        
-        /*public void WinOrLossForPlayerDuringGame(int score, List<Card> playersHand)
-        {
-            if (score == 21)
-            {
-                _newConsole.WriteLine("Black Jack! You beat the dealer!");
-                ifGameOver = true;
-            } 
-            else if (score > 21)
-            {
-                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
-                foreach (var i in playersHand)
-                {
-                    _newConsole.WriteLine(i.ToString());
-                }
-                _newConsole.WriteLine("\nDealer Wins!");
-                ifGameOver = true;
-            }
-        }
-        
-        
-        public void WinOrLossForDealerDuringGame(int score, List<Card> dealersHand)
-        {
-            if (score == 21)
-            {
-                _newConsole.WriteLine("Black Jack! Dealer wins!");
-                ifGameOver = true;
-            } 
-            else if (score > 21)
-            {
-                _newConsole.WriteLine("You are at currently at Bust with the hand: \n");
-                foreach (var i in dealersHand)
-                {
-                    _newConsole.WriteLine(i.ToString());
-                }
-                _newConsole.WriteLine("\nPlayer Wins!");
-                ifGameOver = true;
-            }
-        }*/
-        
-        
+
+
         public void IsWinner(int playersScore, int dealersScore)
         {
             if (playersScore > dealersScore)

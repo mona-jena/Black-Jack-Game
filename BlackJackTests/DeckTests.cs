@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Black_Jack_Game;
 using Xunit;
 
@@ -83,7 +82,6 @@ namespace ProgramTest
                 var actual = $"{deckTest.completeDeck[c].Value},{deckTest.completeDeck[c].Suite}";
                 Assert.Equal(completeDeck[c], actual);
             }
-           
         }
         
 

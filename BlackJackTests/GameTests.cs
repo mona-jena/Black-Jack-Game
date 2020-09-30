@@ -225,7 +225,7 @@ namespace ProgramTest
         public void TestIfWinOrLossDuringGamePrintsCorrectlyWhenItsDealersTurnAndScoreIsOver21()
         {
             var consoleActionsMock = new Mock<IConsole>();
-                
+            
             Game game = new Game(consoleActionsMock.Object, new Deck());
             Deck deck = new Deck();
             int score = 30; 

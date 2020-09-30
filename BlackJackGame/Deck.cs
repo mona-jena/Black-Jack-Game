@@ -35,7 +35,6 @@ namespace Black_Jack_Game
         {
             Card firstCard = CompleteDeck[0];
             CompleteDeck.RemoveAt(0);
-            Console.WriteLine("\ntopcard: " + firstCard + "\n");
             return firstCard;
         }
         

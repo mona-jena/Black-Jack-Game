@@ -13,5 +13,10 @@ namespace Black_Jack_Game
         {
             Console.WriteLine(message);
         }
+        
+        public void Write(string message)
+        {
+            Console.Write(message);
+        }
     }
 }

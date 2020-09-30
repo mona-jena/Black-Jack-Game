@@ -6,6 +6,8 @@ namespace Black_Jack_Game
         public string ReadLine();
 
         public void WriteLine(string message);
+
+        public void Write(string message);
     }
 
 }

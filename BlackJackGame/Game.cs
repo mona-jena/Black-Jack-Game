@@ -8,8 +8,8 @@ namespace Black_Jack_Game
     {
         private IDeck _newDeck;
         private static IConsole _newConsole;
-        private static bool isPlayersTurn = false;
-        private static bool isGameOver = false;
+        private static bool _isPlayersTurn = false;
+        private static bool _isGameOver = false;
         
         static void Main(string[] args)
         {
@@ -26,16 +26,16 @@ namespace Black_Jack_Game
             dealer.DrawFirstTwoCards(deck);
             
             player.PrintCurrentState();
-            isPlayersTurn = true;
+            _isPlayersTurn = true;
             player.PlayersTurn(deck);
 
-            if (isGameOver == false){
+            if (_isGameOver == false){
                 dealer.PrintCurrentState();
-                isPlayersTurn = false;
-                dealer.DealersTurn(deck, isGameOver);
+                _isPlayersTurn = false;
+                dealer.DealersTurn(deck, _isGameOver);
             }
 
-            if (isGameOver == false)
+            if (_isGameOver == false)
             {
                 game.IsWinner(player.Score, dealer.Score);
             }
@@ -49,28 +49,19 @@ namespace Black_Jack_Game
         }
         
         
-        public List<Card> DrawFirstTwoCards(IDeck deck)
-        {
-            List<Card> usersHand = new List<Card>();
-            usersHand.Add(deck.DrawCard());
-            usersHand.Add(deck.DrawCard());
-
-            return usersHand;
-        }
-        
 
         public static void WinOrLossDuringGame(int score, List<Card> gamersHand)
         {
             if (score == 21)
             {
-                var result = isPlayersTurn ? "\nBlack Jack! You beat the dealer!" : "Black Jack! Dealer wins!";
-                isGameOver = true;
+                var result = _isPlayersTurn ? "\nBlack Jack! You beat the dealer!" : "Black Jack! Dealer wins!";
+                _isGameOver = true;
                 _newConsole.WriteLine(result);
             }
             else if (score > 21)
             {
-                var result = isPlayersTurn ? "\nYou are at currently at Bust with the hand " : "\nDealer is currently at Bust with the hand ";
-                isGameOver = true;
+                var result = _isPlayersTurn ? "\nYou are at currently at Bust with the hand " : "\nDealer is currently at Bust with the hand ";
+                _isGameOver = true;
                 _newConsole.WriteLine(result);
                 foreach (var i in gamersHand)
                 {
@@ -78,8 +69,8 @@ namespace Black_Jack_Game
                 }
                 _newConsole.WriteLine("");
 
-                var result2 = isPlayersTurn ? "\nDealer Wins!" : "\nPlayer Wins!";
-                isGameOver = true;
+                var result2 = _isPlayersTurn ? "\nDealer Wins!" : "\nPlayer Wins!";
+                _isGameOver = true;
                 _newConsole.WriteLine(result2);
             }
         }

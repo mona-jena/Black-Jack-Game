@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Black_Jack_Game
@@ -7,14 +6,15 @@ namespace Black_Jack_Game
     {
         private IConsole _newConsole;
 
-        public List<Card> PlayersHand { get; set; } = new List<Card>();
-        public int Score { get; set; }  // should Score be a property?
-
         public Player(IConsole console)
         {
             _newConsole = console;
         }
 
+        public List<Card> Hand { get; set; } = new List<Card>();
+        
+        public int Score { get; set; }
+        
         public int PlayersTurn(IDeck deck)
         {
             
@@ -25,9 +25,9 @@ namespace Black_Jack_Game
                 playersOption = _newConsole.ReadLine();
                 if(playersOption == "1")
                 {
-                    PlayersHand.Add(deck.DrawCard());
-                    Score = CalculateScore(PlayersHand);
-                    CurrentState();
+                    Hand.Add(deck.DrawCard());
+                    Score = CalculateScore(Hand);
+                    PrintCurrentState();
                 }
                 else
                 {
@@ -35,20 +35,19 @@ namespace Black_Jack_Game
                 }
             }
             
-            Game.WinOrLossDuringGame(Score, PlayersHand);
+            Game.WinOrLossDuringGame(Score, Hand);
             return Score;
         }
         
         public void DrawFirstTwoCards(IDeck deck)
         {
-            PlayersHand.Add(deck.DrawCard());
-            PlayersHand.Add(deck.DrawCard());
+            Hand.Add(deck.DrawCard());
+            Hand.Add(deck.DrawCard());
             
-            Score = CalculateScore(PlayersHand);
-            Game.WinOrLossDuringGame(Score, PlayersHand);
+            Score = CalculateScore(Hand);
+            Game.WinOrLossDuringGame(Score, Hand);
         }
         
-
         
         public int CalculateScore(List<Card> playersHand)
         {
@@ -96,10 +95,10 @@ namespace Black_Jack_Game
             return Score;
         }
 
-        public void CurrentState()
+        public void PrintCurrentState()
         {
             _newConsole.Write("You are currently at " + Score + "\nwith the hand ");
-            foreach (var i in PlayersHand)
+            foreach (var i in Hand)
             {
                 _newConsole.Write(i.ToString() + " ");
             }

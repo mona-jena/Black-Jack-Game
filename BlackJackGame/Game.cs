@@ -20,12 +20,16 @@ namespace Black_Jack_Game
             Game game = new Game(new ConsoleActions(), new Deck());
             
             Player player = new Player(new ConsoleActions());
-            
             player.DrawFirstTwoCards(deck);
-            player.CurrentState();
+            
+            Dealer dealer = new Dealer(new ConsoleActions());
+            dealer.DrawFirstTwoCards(deck);
+            
+            player.PrintCurrentState();
             isPlayersTurn = true;
             player.PlayersTurn(deck);
             //end of player's turn
+
             
             
             /*List<Card> dealersHand = game.DrawFirstTwoCards(deck);
@@ -33,16 +37,18 @@ namespace Black_Jack_Game
             Console.WriteLine("Dealer's Cards:");
             dealersHand.ForEach(Console.WriteLine);
             Console.WriteLine("score: " + dealersScore + "\n");
-            
+            */
 
             if (isGameOver == false){
-                dealersScore = game.DealersTurn(dealersHand, deck, dealersScore);
+                dealer.PrintCurrentState();
+                isPlayersTurn = false;
+                dealer.DealersTurn(deck, isGameOver);
             }
 
             if (isGameOver == false)
             {
-                game.IsWinner(player.Score, dealersScore);
-            }*/
+                game.IsWinner(player.Score, dealer.Score);
+            }
         }
         
         

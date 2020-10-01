@@ -15,7 +15,7 @@ namespace Black_Jack_Game
 
         public override string ToString()
         {
-            return $"[{Suite}, {Value}]";
+            return $"[{Value}, {Suite}]";
         }
 
     }

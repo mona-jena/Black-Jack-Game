@@ -5,11 +5,15 @@ namespace Black_Jack_Game
 {
     public class Player
     {
-        IConsole _newConsole;
+        private IConsole _newConsole;
 
         public List<Card> PlayersHand { get; set; } = new List<Card>();
         public int Score { get; set; }  // should Score be a property?
-        
+
+        public Player(IConsole console)
+        {
+            _newConsole = console;
+        }
 
         public int PlayersTurn(IDeck deck)
         {
@@ -35,23 +39,20 @@ namespace Black_Jack_Game
             return Score;
         }
         
-        public List<Card> DrawFirstTwoCards(IDeck deck)
+        public void DrawFirstTwoCards(IDeck deck)
         {
-            List<Card> usersHand = new List<Card>();
-            usersHand.Add(deck.DrawCard());
-            usersHand.Add(deck.DrawCard());
+            PlayersHand.Add(deck.DrawCard());
+            PlayersHand.Add(deck.DrawCard());
             
-            int score = CalculateScore(usersHand);
-            Game.WinOrLossDuringGame(score, usersHand);
-            
-            return usersHand;
+            Score = CalculateScore(PlayersHand);
+            Game.WinOrLossDuringGame(Score, PlayersHand);
         }
         
 
         
         public int CalculateScore(List<Card> playersHand)
         {
-            int score = 0;
+            Score = 0;
             int numberOfAces = 0;
 
             foreach (var card in playersHand)
@@ -59,40 +60,40 @@ namespace Black_Jack_Game
                 switch (card.Value)
                 {
                     case ("Jack"):
-                        score += 10;
+                        Score += 10;
                         break;
                     case ("King"):
-                        score += 10;
+                        Score += 10;
                         break;
                     case ("Queen"):
-                        score += 10;
+                        Score += 10;
                         break;
                     case ("Ace"):
                         numberOfAces++;
                         break;
                     default:
-                        score += int.Parse(card.Value);
+                        Score += int.Parse(card.Value);
                         break;
                 }
             }
 
             if (numberOfAces == 0)
             {
-                return score;
+                return Score;
             }
 
-            score += (numberOfAces - 1);
+            Score += (numberOfAces - 1);
 
-            if (score < 11)
+            if (Score < 11)
             {
-                score += 11;
+                Score += 11;
             }
             else
             {
-                score += 1;
+                Score += 1;
             }
 
-            return score;
+            return Score;
         }
 
         public void CurrentState()

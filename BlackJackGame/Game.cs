@@ -19,11 +19,14 @@ namespace Black_Jack_Game
 
             Game game = new Game(new ConsoleActions(), new Deck());
             
-            List<Card> playersHand = game.DrawFirstTwoCards(deck);
-            int playersScore = game.CalculateScore(playersHand);
-            Console.WriteLine("Player's Cards:");
-            playersHand.ForEach(Console.WriteLine);
-            Console.WriteLine("score: " + playersScore + "\n");
+            Player player = new Player();
+            
+            List<Card> playersHand = player.DrawFirstTwoCards(deck);
+            player.CurrentState();
+            game.ifPlayersTurn = true;
+            player.PlayersTurn(deck);
+            //end of player's turn
+            
 
             List<Card> dealersHand = game.DrawFirstTwoCards(deck);
             int dealersScore = game.CalculateScore(dealersHand);
@@ -31,7 +34,6 @@ namespace Black_Jack_Game
             dealersHand.ForEach(Console.WriteLine);
             Console.WriteLine("score: " + dealersScore + "\n");
             
-            playersScore = game.PlayersTurn(playersHand, deck, playersScore);
 
             if (ifGameOver == false){
                 dealersScore = game.DealersTurn(dealersHand, deck, dealersScore);
@@ -39,7 +41,7 @@ namespace Black_Jack_Game
 
             if (ifGameOver == false)
             {
-                game.IsWinner(playersScore, dealersScore);
+                game.IsWinner(player.Score, dealersScore);
             }
         }
         
@@ -64,12 +66,12 @@ namespace Black_Jack_Game
         public int PlayersTurn(List<Card> playersHand, IDeck deck, int score)
         {
             ifPlayersTurn = true;
-            _newConsole.Write("You are currently at " + score + "\nwith the hand ");
+            /*_newConsole.Write("You are currently at " + score + "\nwith the hand ");
             foreach (var i in playersHand)
             {
                 _newConsole.Write(i.ToString() + " ");
             }
-            _newConsole.WriteLine("");
+            _newConsole.WriteLine("");*/
 
             WinOrLossDuringGame(score, playersHand);
             
@@ -178,7 +180,7 @@ namespace Black_Jack_Game
         }
 
 
-        public void WinOrLossDuringGame(int score, List<Card> gamersHand)
+        public static void WinOrLossDuringGame(int score, List<Card> gamersHand)
         {
             if (score == 21)
             {

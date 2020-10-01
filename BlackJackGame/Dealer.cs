@@ -16,26 +16,24 @@ namespace Black_Jack_Game
             
             while (Score < 17 && (isGameOver == false))
             {
-                Hand.Add(deck.DrawCard());
+                var drawnCard = deck.DrawCard();
+                _newConsole.WriteLine("\nDealer draws " + drawnCard + "\nand is at " + Score);
+                Hand.Add(drawnCard);
                 Score = CalculateScore(Hand);
-                PrintCurrentState();
             }
-
             Game.WinOrLossDuringGame(Score, Hand);
-
             return Score;
         }        
         
-        public void PrintCurrentState()
+        public override void PrintCurrentState()
         {
-            _newConsole.Write("You are currently at " + Score + "\nwith the hand ");
+            _newConsole.Write("\nDealer is at " + Score + "\nwith the hand ");
             foreach (var i in Hand)
             {
                 _newConsole.Write(i.ToString() + " ");
             }
             _newConsole.WriteLine("");
         }
-        
         
     }
 }

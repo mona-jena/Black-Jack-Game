@@ -21,7 +21,7 @@ namespace Black_Jack_Game
             string playersOption = "1";
             while (playersOption == "1" && Score < 21)
             {
-                _newConsole.Write("\nHit or stay? (Hit = 1, Stay = 0) ");
+                _newConsole.Write("\nHit or stay? (Hit = 1, Stay = 0) \n");
                 playersOption = _newConsole.ReadLine();
                 if(playersOption == "1")
                 {
@@ -95,7 +95,7 @@ namespace Black_Jack_Game
             return Score;
         }
 
-        public void PrintCurrentState()
+        public virtual void PrintCurrentState()
         {
             _newConsole.Write("You are currently at " + Score + "\nwith the hand ");
             foreach (var i in Hand)
